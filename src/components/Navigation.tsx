@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useEffect } from "react";
 
 const NAV_ITEMS = [
   { href: "#overview", label: "Overview" },
@@ -13,17 +14,53 @@ const NAV_ITEMS = [
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
+  const [isGpsTracking, setIsGpsTracking] = useState(false);
+
+  useEffect(() => {
+    const storageKey = "africa2026:gps-tracking";
+    const eventName = "africa2026:gps-tracking-changed";
+
+    const syncFromStorage = () => {
+      try {
+        setIsGpsTracking(localStorage.getItem(storageKey) === "on");
+      } catch {
+        setIsGpsTracking(false);
+      }
+    };
+
+    const handleTrackingChanged = (event: Event) => {
+      const custom = event as CustomEvent<{ tracking?: boolean }>;
+      setIsGpsTracking(Boolean(custom.detail?.tracking));
+    };
+
+    syncFromStorage();
+    window.addEventListener(eventName, handleTrackingChanged as EventListener);
+    window.addEventListener("storage", syncFromStorage);
+    return () => {
+      window.removeEventListener(eventName, handleTrackingChanged as EventListener);
+      window.removeEventListener("storage", syncFromStorage);
+    };
+  }, []);
 
   return (
     <nav className="sticky top-0 z-50 border-b border-safari-sand/60 bg-safari-ivory/95 backdrop-blur-md supports-[padding:max(0px)]:pt-[env(safe-area-inset-top)]">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-        <a
-          href="#overview"
-          className="font-serif text-lg tracking-wide text-safari-green"
-          onClick={() => setOpen(false)}
-        >
-          Africa 2026
-        </a>
+        <div className="flex items-center gap-2">
+          <a
+            href="#overview"
+            className="font-serif text-lg tracking-wide text-safari-green"
+            onClick={() => setOpen(false)}
+          >
+            Africa 2026
+          </a>
+          <span
+            className={`inline-flex h-2.5 w-2.5 rounded-full ${
+              isGpsTracking ? "bg-emerald-500" : "bg-safari-charcoal/25"
+            }`}
+            title={isGpsTracking ? "GPS tracking active" : "GPS tracking inactive"}
+            aria-label={isGpsTracking ? "GPS tracking active" : "GPS tracking inactive"}
+          />
+        </div>
 
         <button
           type="button"
