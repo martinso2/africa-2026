@@ -1,5 +1,4 @@
 import { type SafariStop, TRIP } from "@/data/itinerary";
-import LiveLocationPanel from "@/components/LiveLocationPanel";
 import { formatShortDate, getCurrentStop, getUpcomingStop } from "@/lib/dates";
 import type { WeatherData } from "@/lib/weather";
 
@@ -48,7 +47,7 @@ export default function TodayAtCamp({ stops, weatherByStop }: TodayAtCampProps) 
         </span>
       </div>
 
-      <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div className="mt-4 grid gap-4 md:grid-cols-3">
         <article className="rounded-xl bg-safari-sand/25 p-4">
           <p className="text-xs font-semibold uppercase tracking-wide text-safari-charcoal/55">
             Camp
@@ -102,7 +101,6 @@ export default function TodayAtCamp({ stops, weatherByStop }: TodayAtCampProps) 
           </div>
         </article>
 
-        <LiveLocationPanel stops={stops} />
       </div>
     </section>
   );

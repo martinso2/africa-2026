@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useEffect } from "react";
+import { GPS_TRACKING_EVENT, readTrackingState } from "@/lib/liveGps";
 
 const NAV_ITEMS = [
   { href: "#overview", label: "Overview" },
@@ -17,15 +18,8 @@ export default function Navigation() {
   const [isGpsTracking, setIsGpsTracking] = useState(false);
 
   useEffect(() => {
-    const storageKey = "africa2026:gps-tracking";
-    const eventName = "africa2026:gps-tracking-changed";
-
     const syncFromStorage = () => {
-      try {
-        setIsGpsTracking(localStorage.getItem(storageKey) === "on");
-      } catch {
-        setIsGpsTracking(false);
-      }
+      setIsGpsTracking(readTrackingState());
     };
 
     const handleTrackingChanged = (event: Event) => {
@@ -34,10 +28,10 @@ export default function Navigation() {
     };
 
     syncFromStorage();
-    window.addEventListener(eventName, handleTrackingChanged as EventListener);
+    window.addEventListener(GPS_TRACKING_EVENT, handleTrackingChanged as EventListener);
     window.addEventListener("storage", syncFromStorage);
     return () => {
-      window.removeEventListener(eventName, handleTrackingChanged as EventListener);
+      window.removeEventListener(GPS_TRACKING_EVENT, handleTrackingChanged as EventListener);
       window.removeEventListener("storage", syncFromStorage);
     };
   }, []);

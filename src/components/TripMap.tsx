@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import L, { type Map } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import type { SafariStop } from "@/data/itinerary";
@@ -9,11 +9,16 @@ import {
   getFlightLeg,
   type FlightLeg,
 } from "@/data/flights";
-import { formatMiles } from "@/lib/geo";
+import { formatMiles, haversineDistanceKm, toMiles } from "@/lib/geo";
 import {
   FlightDateBadge,
   FlightTimeBadge,
 } from "@/components/FlightSchedule";
+import {
+  GPS_LOCATION_EVENT,
+  readLocationSnapshot,
+  type LiveGpsSnapshot,
+} from "@/lib/liveGps";
 
 function makeIcon(label: string, color: string) {
   return `<div style="
@@ -46,10 +51,34 @@ export function FlightMapCard({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<Map | null>(null);
+  const userMarkerRef = useRef<L.CircleMarker | null>(null);
+  const userAccuracyRef = useRef<L.Circle | null>(null);
+  const [liveLocation, setLiveLocation] = useState<LiveGpsSnapshot | null>(null);
+  const [isLiveLocationInView, setIsLiveLocationInView] = useState(true);
   const distance = formatMiles(
     flight.departure.coordinates,
     flight.arrival.coordinates,
   );
+
+  useEffect(() => {
+    const syncLocation = () => setLiveLocation(readLocationSnapshot());
+    const onLocationChanged = (event: Event) => {
+      const custom = event as CustomEvent<{ snapshot?: LiveGpsSnapshot | null }>;
+      if (custom.detail?.snapshot) {
+        setLiveLocation(custom.detail.snapshot);
+      } else {
+        syncLocation();
+      }
+    };
+
+    syncLocation();
+    window.addEventListener(GPS_LOCATION_EVENT, onLocationChanged as EventListener);
+    window.addEventListener("storage", syncLocation);
+    return () => {
+      window.removeEventListener(GPS_LOCATION_EVENT, onLocationChanged as EventListener);
+      window.removeEventListener("storage", syncLocation);
+    };
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -111,10 +140,74 @@ export function FlightMapCard({
     map.fitBounds(L.latLngBounds([depLatLng, arrLatLng]), { padding: [48, 48] });
 
     return () => {
+      userMarkerRef.current?.remove();
+      userAccuracyRef.current?.remove();
       destroyMap(mapRef.current, container);
       mapRef.current = null;
+      userMarkerRef.current = null;
+      userAccuracyRef.current = null;
     };
   }, [flight]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    if (!liveLocation) {
+      userMarkerRef.current?.remove();
+      userAccuracyRef.current?.remove();
+      userMarkerRef.current = null;
+      userAccuracyRef.current = null;
+      setIsLiveLocationInView(true);
+      return;
+    }
+
+    const latLng: [number, number] = [liveLocation.lat, liveLocation.lon];
+    setIsLiveLocationInView(map.getBounds().contains(latLng));
+    if (!userMarkerRef.current) {
+      userMarkerRef.current = L.circleMarker(latLng, {
+        radius: 7,
+        color: "#ffffff",
+        weight: 2,
+        fillColor: "#2563eb",
+        fillOpacity: 1,
+      })
+        .addTo(map)
+        .bindPopup("<strong>You are here</strong>");
+    } else {
+      userMarkerRef.current.setLatLng(latLng);
+    }
+
+    if (!userAccuracyRef.current) {
+      userAccuracyRef.current = L.circle(latLng, {
+        radius: liveLocation.accuracy,
+        color: "#2563eb",
+        weight: 1,
+        fillColor: "#60a5fa",
+        fillOpacity: 0.2,
+      }).addTo(map);
+    } else {
+      userAccuracyRef.current.setLatLng(latLng);
+      userAccuracyRef.current.setRadius(liveLocation.accuracy);
+    }
+  }, [liveLocation]);
+
+  const offscreenDistanceMiles = liveLocation
+    ? Math.min(
+        toMiles(
+          haversineDistanceKm(
+            { lat: liveLocation.lat, lon: liveLocation.lon },
+            flight.departure.coordinates,
+          ),
+        ),
+        toMiles(
+          haversineDistanceKm(
+            { lat: liveLocation.lat, lon: liveLocation.lon },
+            flight.arrival.coordinates,
+          ),
+        ),
+      )
+    : null;
 
   return (
     <div className="overflow-hidden rounded-2xl border border-safari-sand/80 bg-white shadow-sm">
@@ -160,7 +253,22 @@ export function FlightMapCard({
           </span>
           {flight.arrival.name}
         </span>
+        {liveLocation && (
+          <span className="flex items-center gap-2">
+            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white">
+              ●
+            </span>
+            You are here
+          </span>
+        )}
       </div>
+
+      {liveLocation && !isLiveLocationInView && offscreenDistanceMiles !== null && (
+        <p className="border-t border-safari-sand/60 bg-amber-50 px-5 py-3 text-xs font-semibold text-amber-900 sm:px-6">
+          Live GPS active — your current location is outside this route map (about{" "}
+          {offscreenDistanceMiles.toLocaleString()} miles away).
+        </p>
+      )}
     </div>
   );
 }
