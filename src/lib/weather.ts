@@ -7,8 +7,8 @@ export interface DailyForecast {
   icon: string;
 }
 
-/** OpenWeather + page cache: refresh once per day on Vercel */
-export const WEATHER_REVALIDATE_SECONDS = 86_400;
+/** OpenWeather + page cache: refresh every 12 hours on Vercel */
+export const WEATHER_REVALIDATE_SECONDS = 43_200;
 
 export interface WeatherData {
   location: string;

@@ -41,9 +41,9 @@ export interface SafariStop {
 
 export const TRIP = {
   title: "Martin Family Safari 2026",
-  dates: "June 5–15, 2026",
+  dates: "June 4–15, 2026",
   subtitle: "Nairobi, Laikipia, Loisaba, and the Maasai Mara",
-  startDate: "2026-06-05",
+  startDate: "2026-06-04",
   endDate: "2026-06-15",
 } as const;
 

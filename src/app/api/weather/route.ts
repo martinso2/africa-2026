@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getWeather } from "@/lib/weather";
 
-export const revalidate = 86400;
+export const revalidate = 43200;
 
 export async function GET(request: NextRequest) {
   const lat = request.nextUrl.searchParams.get("lat");

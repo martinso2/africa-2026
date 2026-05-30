@@ -7,8 +7,8 @@ import SafariStopSection from "@/components/SafariStopSection";
 import { ITINERARY, TRIP } from "@/data/itinerary";
 import { getWeather } from "@/lib/weather";
 
-/** Regenerate homepage (and weather) once per day on Vercel */
-export const revalidate = 86400;
+/** Regenerate homepage (and weather) every 12 hours on Vercel */
+export const revalidate = 43200;
 
 export default async function Home() {
   const weatherResults = await Promise.all(
