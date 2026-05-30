@@ -10,6 +10,10 @@ import {
   type FlightLeg,
 } from "@/data/flights";
 import { formatMiles } from "@/lib/geo";
+import {
+  FlightDateBadge,
+  FlightTimeBadge,
+} from "@/components/FlightSchedule";
 
 function makeIcon(label: string, color: string) {
   return `<div style="
@@ -114,7 +118,7 @@ export function FlightMapCard({
 
   return (
     <div className="overflow-hidden rounded-2xl border border-safari-sand/80 bg-white shadow-sm">
-      <div className="border-b border-safari-sand/60 px-5 py-4 sm:px-6">
+      <div className="border-b border-safari-sand/60 px-4 py-4 sm:px-6">
         <p className="text-xs font-semibold uppercase tracking-wider text-safari-charcoal/50">
           Charter Flight
         </p>
@@ -123,18 +127,16 @@ export function FlightMapCard({
           <span className="text-safari-charcoal/40">→</span> {flight.arrival.name}
         </p>
         <p className="mt-1 text-sm text-safari-charcoal/60">{propertyRoute}</p>
-        <div className="mt-3 flex flex-wrap gap-2">
-          <span className="rounded-full bg-safari-green/10 px-3 py-1 text-xs font-medium text-safari-green">
-            {formatFlightDate(flight.date)}
-          </span>
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          <FlightDateBadge className="max-w-full">{formatFlightDate(flight.date)}</FlightDateBadge>
+          <FlightTimeBadge className="max-w-full flex-wrap">
+            {flight.departureTime} – {flight.arrivalTime}
+          </FlightTimeBadge>
           <span className="rounded-full bg-safari-sand/40 px-3 py-1 text-xs font-medium text-safari-charcoal">
             {flight.operator}
           </span>
           <span className="rounded-full bg-safari-sand/40 px-3 py-1 text-xs font-medium text-safari-charcoal">
-            {flight.departureTime} – {flight.arrivalTime} ({flight.duration})
-          </span>
-          <span className="rounded-full bg-safari-sand/40 px-3 py-1 text-xs font-medium text-safari-charcoal">
-            {distance}
+            {flight.duration} · {distance}
           </span>
         </div>
       </div>

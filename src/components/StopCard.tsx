@@ -64,7 +64,7 @@ export default function StopCard({
       <div className="p-5">
         <h3 className="font-serif text-xl text-safari-green">{stop.propertyName}</h3>
         <p className="mt-1 text-sm text-safari-charcoal/70">{stop.location}</p>
-        <p className="mt-3 text-sm font-medium text-safari-charcoal">
+        <p className="mt-3 text-sm font-semibold text-safari-charcoal">
           {formatDateRange(stop.checkIn, stop.checkOut)}
         </p>
         <p className="mt-1 text-sm text-safari-charcoal/60">

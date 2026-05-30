@@ -5,7 +5,7 @@ export default function ItineraryTimeline() {
   return (
     <section id="itinerary" className="scroll-mt-20">
       <div className="mb-8">
-        <h2 className="font-serif text-3xl text-safari-green">Itinerary</h2>
+        <h2 className="font-serif text-2xl text-safari-green sm:text-3xl">Itinerary</h2>
         <p className="mt-2 text-safari-charcoal/70">
           Ten nights across four extraordinary properties
         </p>
@@ -50,10 +50,10 @@ export default function ItineraryTimeline() {
                     </span>
                   )}
                 </div>
-                <p className="mt-2 text-sm font-medium text-safari-charcoal">
+                <p className="mt-2 text-sm font-semibold text-safari-charcoal">
                   {formatDateRange(stop.checkIn, stop.checkOut)}
                 </p>
-                <p className="mt-1 text-xs text-safari-charcoal/50">
+                <p className="mt-1 text-sm text-safari-charcoal/60">
                   Check-in {formatShortDate(stop.checkIn)} · Check-out{" "}
                   {formatShortDate(stop.checkOut)}
                 </p>

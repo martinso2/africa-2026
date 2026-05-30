@@ -41,11 +41,11 @@ export default async function SafariStopSection({
   return (
     <section id={stop.id} className="scroll-mt-24">
       <header className="mb-6 border-b border-safari-sand/60 pb-4">
-        <h2 className="font-serif text-2xl text-safari-green sm:text-3xl">
+        <h2 className="font-serif text-xl text-safari-green sm:text-3xl">
           {stop.propertyName}
         </h2>
         <p className="mt-1 text-safari-charcoal/70">{stop.location}</p>
-        <p className="mt-2 text-sm font-medium text-safari-charcoal">
+        <p className="mt-2 text-sm font-semibold leading-snug text-safari-charcoal sm:leading-normal">
           {formatDateRange(stop.checkIn, stop.checkOut)} ·{" "}
           {stop.nights} {stop.nights === 1 ? "night" : "nights"}
         </p>

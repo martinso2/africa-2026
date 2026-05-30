@@ -8,7 +8,7 @@ interface WeatherCardProps {
 export default function WeatherCard({ stopName, weather }: WeatherCardProps) {
   return (
     <article className="overflow-hidden rounded-2xl border border-safari-sand/80 bg-white shadow-sm">
-      <div className="border-b border-safari-sand/60 bg-safari-green/5 px-5 py-4 sm:px-6">
+      <div className="border-b border-safari-sand/60 bg-safari-green/5 px-4 py-4 sm:px-6">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
             <h3 className="font-serif text-xl text-safari-green">{stopName}</h3>
@@ -22,7 +22,7 @@ export default function WeatherCard({ stopName, weather }: WeatherCardProps) {
         </div>
       </div>
 
-      <div className="p-5 sm:p-6">
+      <div className="p-4 sm:p-6">
         <div className="flex items-center gap-4 rounded-xl bg-safari-sand/20 p-4">
           <span className="text-4xl" aria-hidden="true">
             {weather.current.icon}

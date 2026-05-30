@@ -44,8 +44,8 @@ export default function AccommodationCard({
     >
       <AccommodationHero stop={stop} resolvedImages={resolvedImages} />
 
-      <div className="p-5 sm:p-6">
-        <div className="flex flex-wrap items-center gap-3 text-sm">
+      <div className="p-4 sm:p-6">
+        <div className="flex flex-wrap items-center gap-3 text-sm font-medium">
           <span className="rounded-full bg-safari-green/10 px-3 py-1 font-medium text-safari-green">
             {formatDateRange(stop.checkIn, stop.checkOut)}
           </span>
@@ -62,7 +62,11 @@ export default function AccommodationCard({
           <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-safari-charcoal/50">
             Gallery Preview
           </p>
-          <div className="grid grid-cols-3 gap-2">
+          <div
+            className={`grid gap-2 ${
+              gallery.length > 3 ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3"
+            }`}
+          >
             {gallery.map((img, i) => (
               <div
                 key={i}

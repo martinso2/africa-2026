@@ -3,8 +3,8 @@ import { RETURN_JOURNEY } from "@/data/internationalFlights";
 
 export default function ReturnFlights() {
   return (
-    <div className="mb-14">
-      <div className="mb-6">
+    <div className="mb-10 sm:mb-14">
+      <div className="mb-5 sm:mb-6">
         <h2 className="font-serif text-2xl text-safari-green sm:text-3xl">
           Heading Home
         </h2>

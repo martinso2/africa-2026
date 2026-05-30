@@ -13,6 +13,12 @@ import {
   type DubaiLayover,
 } from "@/data/internationalFlights";
 import { formatMiles, formatTotalRouteMiles } from "@/lib/geo";
+import {
+  FlightDateBadge,
+  FlightLegScheduleHeader,
+  FlightTimeBlock,
+  FlightTimeBadge,
+} from "@/components/FlightSchedule";
 
 const InternationalRouteMap = dynamic(
   () => import("@/components/InternationalRouteMap"),
@@ -30,44 +36,51 @@ function LegRow({ leg }: { leg: InternationalLeg }) {
   const distance = formatMiles(leg.from.coordinates, leg.to.coordinates);
 
   return (
-    <div className="rounded-xl border border-safari-sand/60 bg-safari-ivory/40 p-4 sm:p-5">
-      <p className="text-sm font-medium text-safari-green">
-        {formatInternationalDate(leg.date)}
-      </p>
-      <p className="mt-1 text-xs text-safari-charcoal/50">
-        {leg.airline} · {leg.flightNumber} · {leg.duration} · {distance}
-      </p>
+    <div className="overflow-hidden rounded-xl border border-safari-sand/60 bg-safari-ivory/40">
+      <FlightLegScheduleHeader
+        date={formatInternationalDate(leg.date)}
+        meta={`${leg.airline} · ${leg.flightNumber} · ${leg.duration} · ${distance}`}
+      />
 
-      <div className="mt-4 grid gap-4 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-safari-charcoal/50">
-            Depart
-          </p>
-          <p className="mt-1 font-serif text-lg text-safari-charcoal">{leg.from.code}</p>
-          <p className="text-sm text-safari-charcoal/70">{leg.from.city}</p>
-          <p className="mt-1 text-xs text-safari-charcoal/50">{leg.from.airport}</p>
-          <p className="mt-2 text-sm font-semibold text-safari-green">{leg.from.time}</p>
+      <div className="p-4 sm:p-5">
+        <div className="grid gap-4 sm:grid-cols-[1fr_auto_1fr] sm:items-start">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-safari-charcoal/50">
+              From
+            </p>
+            <p className="mt-1 font-serif text-lg text-safari-charcoal">{leg.from.code}</p>
+            <p className="text-sm text-safari-charcoal/70">{leg.from.city}</p>
+            <p className="mt-1 text-xs text-safari-charcoal/50">{leg.from.airport}</p>
+          </div>
+
+          <div className="hidden text-center text-2xl text-safari-charcoal/30 sm:block sm:pt-6">
+            ✈
+          </div>
+
+          <div className="sm:text-right">
+            <p className="text-xs font-semibold uppercase tracking-wider text-safari-charcoal/50">
+              To
+            </p>
+            <p className="mt-1 font-serif text-lg text-safari-charcoal">{leg.to.code}</p>
+            <p className="text-sm text-safari-charcoal/70">{leg.to.city}</p>
+            <p className="mt-1 text-xs text-safari-charcoal/50">{leg.to.airport}</p>
+          </div>
         </div>
 
-        <div className="hidden text-center text-2xl text-safari-charcoal/30 sm:block">
-          ✈
-        </div>
-
-        <div className="sm:text-right">
-          <p className="text-xs font-semibold uppercase tracking-wider text-safari-charcoal/50">
-            Arrive
-          </p>
-          <p className="mt-1 font-serif text-lg text-safari-charcoal">{leg.to.code}</p>
-          <p className="text-sm text-safari-charcoal/70">{leg.to.city}</p>
-          <p className="mt-1 text-xs text-safari-charcoal/50">{leg.to.airport}</p>
-          <p className="mt-2 text-sm font-semibold text-safari-green">
-            {leg.to.time}
-            {leg.to.nextDay && (
-              <span className="ml-1 text-xs font-normal text-safari-charcoal/50">
-                (+1 day)
-              </span>
-            )}
-          </p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          <FlightTimeBlock label="Depart" time={leg.from.time} />
+          <FlightTimeBlock
+            label="Arrive"
+            time={leg.to.time}
+            align="right"
+            suffix={
+              leg.to.nextDay ? (
+                <span className="ml-2 text-xs font-normal font-sans text-safari-charcoal/50">
+                  (+1 day)
+                </span>
+              ) : undefined
+            }
+          />
         </div>
       </div>
     </div>
@@ -97,30 +110,28 @@ function DubaiLayoverPanel({ layover }: { layover: DubaiLayover }) {
         </div>
       </div>
 
-      <div className="p-4 sm:p-5">
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div>
+      <div className="border-t border-safari-sand/60 p-4 sm:p-5">
+        <div className="grid gap-3 sm:grid-cols-2">
+          <div className="flex flex-col gap-2">
             <p className="text-xs font-semibold uppercase tracking-wider text-safari-charcoal/50">
               Land
             </p>
-            <p className="mt-1 text-sm font-medium text-safari-green">
-              {formatInternationalDate(layover.arriveDate)}
-            </p>
-            <p className="text-sm text-safari-charcoal/70">{layover.arriveTime}</p>
+            <FlightDateBadge>{formatInternationalDate(layover.arriveDate)}</FlightDateBadge>
+            <FlightTimeBadge>{layover.arriveTime}</FlightTimeBadge>
           </div>
-          <div className="sm:text-right">
+          <div className="flex flex-col gap-2 sm:items-end">
             <p className="text-xs font-semibold uppercase tracking-wider text-safari-charcoal/50">
               Depart
             </p>
-            <p className="mt-1 text-sm font-medium text-safari-green">
+            <FlightDateBadge>
               {formatInternationalDate(layover.departDate)}
               {!sameDay && (
-                <span className="ml-1 text-xs font-normal text-safari-charcoal/50">
+                <span className="ml-2 font-sans text-xs font-normal text-safari-charcoal/60">
                   (+1 day)
                 </span>
               )}
-            </p>
-            <p className="text-sm text-safari-charcoal/70">{layover.departTime}</p>
+            </FlightDateBadge>
+            <FlightTimeBadge>{layover.departTime}</FlightTimeBadge>
           </div>
         </div>
         <p className="mt-4 text-sm leading-relaxed text-safari-charcoal/70">
@@ -156,8 +167,8 @@ export function InternationalJourneySection({
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-          <div className="absolute bottom-0 left-0 p-5 sm:p-6">
-            <h3 className="font-serif text-2xl text-white sm:text-3xl">
+          <div className="absolute bottom-0 left-0 p-4 sm:p-6">
+            <h3 className="font-serif text-xl text-white sm:text-3xl">
               {journey.title}
             </h3>
             <p className="mt-1 text-sm text-white/85">
@@ -166,21 +177,18 @@ export function InternationalJourneySection({
           </div>
         </div>
 
-        <div className="border-b border-safari-sand/60 bg-safari-green/5 px-5 py-4 sm:px-6">
+        <div className="border-b border-safari-sand/60 bg-safari-green/5 px-4 py-4 sm:px-6">
           <p className="text-sm text-safari-charcoal/60">{totalMiles}</p>
           <div className="mt-3 flex flex-wrap gap-2">
             {journey.legs.map((leg) => (
-              <span
-                key={`${journey.id}-${leg.date}-${leg.flightNumber}`}
-                className="rounded-full bg-safari-sand/40 px-3 py-1 text-xs font-medium text-safari-charcoal"
-              >
+              <FlightDateBadge key={`${journey.id}-${leg.date}-${leg.flightNumber}`}>
                 {formatShortDay(leg.date)}
-              </span>
+              </FlightDateBadge>
             ))}
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 p-5 sm:p-6">
+        <div className="flex flex-col gap-4 p-4 sm:p-6">
           {journey.legs.map((leg, index) => (
             <div key={`${leg.flightNumber}-${leg.date}`} className="contents">
               {index === 1 && journey.layover && (
@@ -203,7 +211,9 @@ export function InternationalJourneySection({
       </article>
 
       {footnote && (
-        <p className="mt-4 text-center text-xs text-safari-charcoal/50">{footnote}</p>
+        <p className="mt-4 px-2 text-center text-sm leading-relaxed text-safari-charcoal/50">
+          {footnote}
+        </p>
       )}
     </section>
   );

@@ -9,12 +9,12 @@ export default function NotesSection({ stop }: NotesSectionProps) {
 
   return (
     <article className="overflow-hidden rounded-2xl border border-safari-sand/80 bg-white shadow-sm">
-      <div className="border-b border-safari-sand/60 px-5 py-4 sm:px-6">
-        <h3 className="font-serif text-xl text-safari-green">{stop.propertyName}</h3>
+      <div className="border-b border-safari-sand/60 px-4 py-4 sm:px-6">
+        <h3 className="font-serif text-lg text-safari-green sm:text-xl">{stop.propertyName}</h3>
         <p className="text-sm text-safari-charcoal/60">Packing & Photography</p>
       </div>
 
-      <div className="grid gap-6 p-5 sm:grid-cols-2 sm:p-6">
+      <div className="grid gap-6 p-4 sm:grid-cols-2 sm:p-6">
         <div>
           <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-safari-green">
             What to Wear
@@ -68,7 +68,7 @@ export default function NotesSection({ stop }: NotesSectionProps) {
                 key={tip}
                 className="flex gap-2 text-sm leading-relaxed text-safari-charcoal/75"
               >
-                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-safari-green" />
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-safari-green" />
                 {tip}
               </li>
             ))}

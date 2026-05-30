@@ -9,14 +9,19 @@
   --color-safari-warm: #8b7355;
   --font-serif: var(--font-playfair), Georgia, serif;
   --font-sans: var(--font-source-sans), system-ui, sans-serif;
+  --text-sm: 1rem;
+  --text-sm--line-height: 1.5rem;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .font-serif {
@@ -29,4 +34,10 @@ body {
 
 ::selection {
   background-color: color-mix(in srgb, var(--color-safari-green) 25%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

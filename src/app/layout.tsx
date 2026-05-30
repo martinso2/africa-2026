@@ -20,6 +20,12 @@ export const metadata: Metadata = {
     "Martin Family Safari 2026 — Kenya, June 5–15. Accommodations, itinerary, weather, and photography notes.",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{

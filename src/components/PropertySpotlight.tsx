@@ -6,7 +6,7 @@ interface PropertySpotlightProps {
 
 export default function PropertySpotlight({ insight }: PropertySpotlightProps) {
   return (
-    <div className="border-t border-safari-sand/60 bg-safari-ivory/40 px-5 py-4 sm:px-6">
+    <div className="border-t border-safari-sand/60 bg-safari-ivory/40 px-4 py-4 sm:px-6">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <p className="text-xs font-semibold uppercase tracking-wider text-safari-green">
           Property Spotlight

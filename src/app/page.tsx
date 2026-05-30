@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import OutboundFlights from "@/components/OutboundFlights";
 import ReturnFlights from "@/components/ReturnFlights";
 import ItineraryTimeline from "@/components/ItineraryTimeline";
+import RareSpeciesSection from "@/components/RareSpeciesSection";
 import SafariStopSection from "@/components/SafariStopSection";
 import { ITINERARY, TRIP } from "@/data/itinerary";
 import { getWeather } from "@/lib/weather";
@@ -23,18 +24,11 @@ export default async function Home() {
       <Navigation />
       <Hero />
 
-      <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+      <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-14">
         <OutboundFlights />
 
         <section id="stops" className="scroll-mt-20">
-          <div className="mb-10">
-            {/* <h2 className="font-serif text-3xl text-safari-green">Safari Stops!!!</h2>
-            <p className="mt-2 text-safari-charcoal/70">
-              Accommodation, charter flights, weather, and notes — everything for
-              each location
-            </p> */}
-          </div>
-          <div className="space-y-16">
+          <div className="space-y-12 sm:space-y-16">
             {ITINERARY.map((stop, i) => (
               <SafariStopSection
                 key={stop.id}
@@ -47,12 +41,16 @@ export default async function Home() {
 
         <ReturnFlights />
 
-        <section className="mb-14">
+        <section className="mb-10 sm:mb-14">
           <ItineraryTimeline />
         </section>
+
+        <div className="mb-10 sm:mb-14">
+          <RareSpeciesSection />
+        </div>
       </main>
 
-      <footer className="border-t border-safari-sand/60 bg-safari-green py-8 text-center text-sm text-safari-sand">
+      <footer className="border-t border-safari-sand/60 bg-safari-green px-4 py-8 text-center text-sm text-safari-sand supports-[padding:max(0px)]:pb-[max(2rem,env(safe-area-inset-bottom))]">
         <p className="font-serif text-lg text-safari-ivory">{TRIP.title}</p>
         <p className="mt-1 text-safari-sand/70">
           {TRIP.dates} · Kenya

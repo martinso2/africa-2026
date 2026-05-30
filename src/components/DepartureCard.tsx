@@ -1,5 +1,9 @@
 import type { FlightLeg } from "@/data/flights";
 import { formatFlightDate } from "@/data/flights";
+import {
+  FlightDateBadge,
+  FlightTimeBadge,
+} from "@/components/FlightSchedule";
 
 interface DepartureCardProps {
   flight: FlightLeg;
@@ -22,12 +26,10 @@ export default function DepartureCard({ flight }: DepartureCardProps) {
           Jomo Kenyatta International Airport
         </h3>
         <p className="mt-1 text-sm text-safari-charcoal/70">Nairobi, Kenya</p>
-        <p className="mt-3 text-sm font-medium text-safari-charcoal">
-          {formatFlightDate(flight.date)}
-        </p>
-        <p className="mt-1 text-sm text-safari-charcoal/60">
-          Charter arrives {flight.arrivalTime}
-        </p>
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          <FlightDateBadge>{formatFlightDate(flight.date)}</FlightDateBadge>
+          <FlightTimeBadge>Charter arrives {flight.arrivalTime}</FlightTimeBadge>
+        </div>
         <p className="mt-3 text-sm leading-relaxed text-safari-charcoal/80">
           Final charter leg from the Mara — connect for your international flight
           home.
