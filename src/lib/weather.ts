@@ -7,6 +7,9 @@ export interface DailyForecast {
   icon: string;
 }
 
+/** OpenWeather + page cache: refresh once per day on Vercel */
+export const WEATHER_REVALIDATE_SECONDS = 86_400;
+
 export interface WeatherData {
   location: string;
   current: {
@@ -101,7 +104,9 @@ async function fetchOpenWeatherMap(
   url.searchParams.set("units", "imperial");
   url.searchParams.set("exclude", "minutely,hourly,alerts");
 
-  const res = await fetch(url.toString(), { next: { revalidate: 3600 } });
+  const res = await fetch(url.toString(), {
+    next: { revalidate: WEATHER_REVALIDATE_SECONDS },
+  });
   if (!res.ok) {
     throw new Error(`OpenWeatherMap error: ${res.status}`);
   }

@@ -3,10 +3,12 @@ import Hero from "@/components/Hero";
 import OutboundFlights from "@/components/OutboundFlights";
 import ReturnFlights from "@/components/ReturnFlights";
 import ItineraryTimeline from "@/components/ItineraryTimeline";
-import RareSpeciesSection from "@/components/RareSpeciesSection";
 import SafariStopSection from "@/components/SafariStopSection";
 import { ITINERARY, TRIP } from "@/data/itinerary";
 import { getWeather } from "@/lib/weather";
+
+/** Regenerate homepage (and weather) once per day on Vercel */
+export const revalidate = 86400;
 
 export default async function Home() {
   const weatherResults = await Promise.all(
@@ -44,10 +46,6 @@ export default async function Home() {
         <section className="mb-10 sm:mb-14">
           <ItineraryTimeline />
         </section>
-
-        <div className="mb-10 sm:mb-14">
-          <RareSpeciesSection />
-        </div>
       </main>
 
       <footer className="border-t border-safari-sand/60 bg-safari-green px-4 py-8 text-center text-sm text-safari-sand supports-[padding:max(0px)]:pb-[max(2rem,env(safe-area-inset-bottom))]">
@@ -55,7 +53,7 @@ export default async function Home() {
         <p className="mt-1 text-safari-sand/70">
           {TRIP.dates} · Kenya
         </p>
-        <p className="mt-3 text-safari-sand/60">
+        <p className="mt-3 text-safari-sand/90">
           © Martin-Software, LLC
         </p>
       </footer>

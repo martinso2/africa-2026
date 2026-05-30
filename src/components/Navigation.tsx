@@ -7,7 +7,6 @@ const NAV_ITEMS = [
   { href: "#international-flights", label: "To Kenya" },
   { href: "#stops", label: "Stops" },
   { href: "#itinerary", label: "Itinerary" },
-  { href: "#rare-species", label: "Species" },
   { href: "#return-flights", label: "Home" },
 ];
 
