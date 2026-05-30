@@ -148,14 +148,21 @@ async function fetchOpenWeatherMap(
   };
 }
 
+function getWeatherApiKey(): string | undefined {
+  const key =
+    process.env.WEATHER_API_KEY ?? process.env.NEXT_PUBLIC_WEATHER_API_KEY;
+  if (!key || key === "your_weather_api_key_here") return undefined;
+  return key;
+}
+
 export async function getWeather(
   lat: number,
   lon: number,
   locationName: string,
 ): Promise<WeatherData> {
-  const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
+  const apiKey = getWeatherApiKey();
 
-  if (!apiKey || apiKey === "your_weather_api_key_here") {
+  if (!apiKey) {
     return generateSampleForecast(lat, lon, locationName);
   }
 

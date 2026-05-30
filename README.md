@@ -67,15 +67,25 @@ Weather uses the [OpenWeatherMap One Call API 3.0](https://openweathermap.org/ap
    cp .env.example .env.local
    ```
 
-2. Add your API key:
+2. Add your API key (prefer server-only `WEATHER_API_KEY`):
 
    ```
-   NEXT_PUBLIC_WEATHER_API_KEY=your_actual_api_key
+   WEATHER_API_KEY=your_actual_api_key
    ```
 
 3. Restart the dev server.
 
 Weather is fetched by latitude/longitude from `src/data/itinerary.ts`.
+
+## Firecrawl — Live Property Highlights
+
+When `FIRECRAWL_API_KEY` is set, each accommodation card includes a **Property Spotlight** section scraped from the official property website — live highlights, excerpt, and a link to the source.
+
+```
+FIRECRAWL_API_KEY=fc-your_actual_api_key
+```
+
+Results are cached for 24 hours. Without a key, accommodation cards still work with static descriptions.
 
 ## Push to GitHub
 
@@ -99,7 +109,8 @@ git push -u origin main
 
    | Name | Value |
    |------|-------|
-   | `NEXT_PUBLIC_WEATHER_API_KEY` | Your OpenWeatherMap API key |
+   | `WEATHER_API_KEY` | Your OpenWeatherMap API key |
+   | `FIRECRAWL_API_KEY` | Your Firecrawl API key (optional) |
 
 5. Deploy. Preview URLs are created on every push; production deploys from `main`.
 

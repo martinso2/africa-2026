@@ -7,6 +7,7 @@ import { getGalleryImages, getHeroFallback, getHeroImage } from "@/lib/images";
 
 interface AccommodationCardProps {
   stop: SafariStop;
+  embedded?: boolean;
 }
 
 function SafariImage({
@@ -33,14 +34,19 @@ function SafariImage({
   );
 }
 
-export default function AccommodationCard({ stop }: AccommodationCardProps) {
+export default function AccommodationCard({
+  stop,
+  embedded = false,
+}: AccommodationCardProps) {
   const [showGallery, setShowGallery] = useState(false);
   const gallery = getGalleryImages(stop);
 
   return (
     <article
       id={stop.id}
-      className="scroll-mt-24 overflow-hidden rounded-2xl border border-safari-sand/80 bg-white shadow-sm"
+      className={`scroll-mt-24 overflow-hidden ${
+        embedded ? "" : "rounded-2xl border border-safari-sand/80 bg-white shadow-sm"
+      }`}
     >
       <div className="relative aspect-[16/10] overflow-hidden sm:aspect-[16/9]">
         <SafariImage

@@ -25,6 +25,7 @@ export interface SafariStop {
     lon: number;
   };
   description: string;
+  websiteUrl: string;
   weatherLocationName: string;
   photoFolder: string;
   heroImage: string;
@@ -55,6 +56,7 @@ export const ITINERARY: SafariStop[] = [
     coordinates: { lat: -1.3192, lon: 36.7073 },
     description:
       "An elegant boutique hotel in Karen — the perfect soft landing after the long flight, with refined comfort before the bush.",
+    websiteUrl: "https://www.hemingways-collection.com/hotel/hemingways-nairobi/",
     weatherLocationName: "Nairobi",
     photoFolder: "/images/hemingways",
     heroImage: "/images/hemingways/hero.jpg",
@@ -106,6 +108,7 @@ export const ITINERARY: SafariStop[] = [
     coordinates: { lat: 0.2833, lon: 37.0667 },
     description:
       "A private wilderness camp on the Laikipia Plateau — exclusive game drives, dramatic landscapes, and star-filled nights.",
+    websiteUrl: "https://www.enasoit.com/",
     weatherLocationName: "Laikipia",
     photoFolder: "/images/enasoit",
     heroImage: "/images/enasoit/hero.jpg",
@@ -159,6 +162,7 @@ export const ITINERARY: SafariStop[] = [
     coordinates: { lat: 0.6333, lon: 37.2833 },
     description:
       "Ultra-luxury tented camp perched on an escarpment — sweeping views over the Northern Frontier, camel treks, and night drives.",
+    websiteUrl: "https://www.loisaba.com/accommodation/lodo-springs/",
     weatherLocationName: "Loisaba Conservancy",
     photoFolder: "/images/loisaba",
     heroImage: "/images/loisaba/hero.jpg",
@@ -212,6 +216,7 @@ export const ITINERARY: SafariStop[] = [
     coordinates: { lat: -1.4167, lon: 35.2 },
     description:
       "Intimate camp in the Mara ecosystem — big cats, vast savanna, and some of the finest wildlife viewing in Africa.",
+    websiteUrl: "https://www.asiliaafrica.com/camps-lodges/naboisho-camp/",
     weatherLocationName: "Maasai Mara",
     photoFolder: "/images/naboisho",
     heroImage: "/images/naboisho/hero.jpg",

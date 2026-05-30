@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import StopCard from "@/components/StopCard";
 import ItineraryTimeline from "@/components/ItineraryTimeline";
-import AccommodationCard from "@/components/AccommodationCard";
+import AccommodationSection from "@/components/AccommodationSection";
 import WeatherCard from "@/components/WeatherCard";
 import NotesSection from "@/components/NotesSection";
 import { ITINERARY } from "@/data/itinerary";
@@ -56,7 +56,7 @@ export default async function Home() {
           </div>
           <div className="space-y-8">
             {ITINERARY.map((stop) => (
-              <AccommodationCard key={stop.id} stop={stop} />
+              <AccommodationSection key={stop.id} stop={stop} />
             ))}
           </div>
         </section>
