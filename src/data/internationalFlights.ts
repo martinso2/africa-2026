@@ -4,6 +4,7 @@ export interface InternationalAirport {
   code: string;
   time: string;
   coordinates: { lat: number; lon: number };
+  terminal?: string;
   /** +1 if arrival is the next calendar day */
   nextDay?: boolean;
 }
@@ -14,6 +15,7 @@ export interface InternationalLeg {
   to: InternationalAirport;
   flightNumber: string;
   airline: string;
+  aircraft: string;
   duration: string;
 }
 
@@ -38,7 +40,8 @@ export interface DubaiLayover {
 
 export const INTERNATIONAL_FLIGHT_HERO = "/images/flights/emirates-first.jpg";
 export const INTERNATIONAL_FLIGHT_HERO_ALT =
-  "Emirates First Class private suite on board";
+  "Emirates Business Class cabin on board";
+export const EMIRATES_CABIN = "Business Class";
 
 const JFK = { lat: 40.6413, lon: -73.7781 };
 const DXB = { lat: 25.2532, lon: 55.3657 };
@@ -57,6 +60,7 @@ export const INTERNATIONAL_JOURNEYS: InternationalJourney[] = [
           airport: "John F. Kennedy International",
           code: "JFK",
           time: "11:20 AM",
+          terminal: "Terminal 4",
           coordinates: JFK,
         },
         to: {
@@ -64,11 +68,13 @@ export const INTERNATIONAL_JOURNEYS: InternationalJourney[] = [
           airport: "Dubai International",
           code: "DXB",
           time: "7:55 AM",
+          terminal: "Terminal 3",
           coordinates: DXB,
           nextDay: true,
         },
         flightNumber: "EK 204",
         airline: "Emirates",
+        aircraft: "Airbus A380-800",
         duration: "12h 35m",
       },
       {
@@ -78,6 +84,7 @@ export const INTERNATIONAL_JOURNEYS: InternationalJourney[] = [
           airport: "Dubai International",
           code: "DXB",
           time: "10:30 AM",
+          terminal: "Terminal 3",
           coordinates: DXB,
         },
         to: {
@@ -85,10 +92,12 @@ export const INTERNATIONAL_JOURNEYS: InternationalJourney[] = [
           airport: "Jomo Kenyatta International",
           code: "NBO",
           time: "2:30 PM",
+          terminal: "Terminal 1E",
           coordinates: NBO,
         },
         flightNumber: "EK 719",
         airline: "Emirates",
+        aircraft: "Boeing 777-300ER",
         duration: "4h 00m",
       },
     ],
@@ -100,7 +109,7 @@ export const INTERNATIONAL_JOURNEYS: InternationalJourney[] = [
       departDate: "2026-06-05",
       departTime: "10:30 AM",
       duration: "2h 35m",
-      note: "Morning connection at DXB — Emirates lounge between JFK and Nairobi legs.",
+      note: "Morning connection at DXB Terminal 3 — Emirates lounge between JFK and Nairobi legs.",
     },
   },
   {
@@ -115,6 +124,7 @@ export const INTERNATIONAL_JOURNEYS: InternationalJourney[] = [
           airport: "Jomo Kenyatta International",
           code: "NBO",
           time: "4:35 PM",
+          terminal: "Terminal 1B",
           coordinates: NBO,
         },
         to: {
@@ -122,10 +132,12 @@ export const INTERNATIONAL_JOURNEYS: InternationalJourney[] = [
           airport: "Dubai International",
           code: "DXB",
           time: "10:40 PM",
+          terminal: "Terminal 3",
           coordinates: DXB,
         },
         flightNumber: "EK 720",
         airline: "Emirates",
+        aircraft: "Boeing 777-300ER",
         duration: "5h 05m",
       },
       {
@@ -135,6 +147,7 @@ export const INTERNATIONAL_JOURNEYS: InternationalJourney[] = [
           airport: "Dubai International",
           code: "DXB",
           time: "2:50 AM",
+          terminal: "Terminal 3",
           coordinates: DXB,
         },
         to: {
@@ -142,10 +155,12 @@ export const INTERNATIONAL_JOURNEYS: InternationalJourney[] = [
           airport: "John F. Kennedy International",
           code: "JFK",
           time: "8:50 AM",
+          terminal: "Terminal 4",
           coordinates: JFK,
         },
         flightNumber: "EK 203",
         airline: "Emirates",
+        aircraft: "Airbus A380-800",
         duration: "14h 00m",
       },
     ],
@@ -157,7 +172,7 @@ export const INTERNATIONAL_JOURNEYS: InternationalJourney[] = [
       departDate: "2026-06-16",
       departTime: "2:50 AM",
       duration: "4h 10m",
-      note: "Overnight connection at DXB before the long haul home to JFK.",
+      note: "Overnight connection at DXB Terminal 3 before the long haul home to JFK.",
     },
   },
 ];

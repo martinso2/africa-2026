@@ -9,14 +9,14 @@ export default function ReturnFlights() {
           Heading Home
         </h2>
         <p className="mt-2 text-safari-charcoal/70">
-          Nairobi → Dubai → New York — Emirates
+          Nairobi → Dubai → New York — Emirates Business
         </p>
       </div>
 
       <InternationalJourneySection
         journey={RETURN_JOURNEY}
         sectionId="return-flights"
-        footnote="Departs NBO Mon Jun 15, 4:35 PM · Arrive JFK Tue Jun 16, 8:50 AM — after the Mara charter lands at JKIA (10:40 AM)."
+        footnote="Departs NBO Terminal 1B Mon Jun 15, 4:35 PM · Arrive JFK Terminal 4 Tue Jun 16, 8:50 AM — after the Mara charter lands at JKIA (10:40 AM)."
       />
     </div>
   );

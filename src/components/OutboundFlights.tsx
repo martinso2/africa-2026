@@ -10,14 +10,14 @@ export default function OutboundFlights() {
           Getting to Kenya
         </h2>
         <p className="mt-2 text-safari-charcoal/70">
-          New York → Dubai → Nairobi — Emirates
+          New York → Dubai → Nairobi — Emirates Business
         </p>
       </div>
 
       <InternationalJourneySection
         journey={OUTBOUND_JOURNEY}
         sectionId="international-flights"
-        footnote="Depart JFK Thu Jun 4, 11:20 AM · Arrive Nairobi Fri Jun 5, 2:30 PM · Hemingways check-in Fri Jun 5."
+        footnote="Depart JFK Terminal 4 Thu Jun 4, 11:20 AM · Arrive NBO Terminal 1E Fri Jun 5, 2:30 PM · Hemingways check-in Fri Jun 5."
       />
 
       <GroundTransferSection />

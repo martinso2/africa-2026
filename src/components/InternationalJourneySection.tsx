@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import SafariImage from "@/components/SafariImage";
 import {
+  EMIRATES_CABIN,
   formatInternationalDate,
   formatShortDay,
   getJourneyWaypoints,
@@ -39,7 +40,7 @@ function LegRow({ leg }: { leg: InternationalLeg }) {
     <div className="overflow-hidden rounded-xl border border-safari-sand/60 bg-safari-ivory/40">
       <FlightLegScheduleHeader
         date={formatInternationalDate(leg.date)}
-        meta={`${leg.airline} · ${leg.flightNumber} · ${leg.duration} · ${distance}`}
+        meta={`${leg.airline} · ${leg.flightNumber} · ${leg.aircraft} · ${leg.duration} · ${distance}`}
       />
 
       <div className="p-4 sm:p-5">
@@ -51,6 +52,9 @@ function LegRow({ leg }: { leg: InternationalLeg }) {
             <p className="mt-1 font-serif text-lg text-safari-charcoal">{leg.from.code}</p>
             <p className="text-sm text-safari-charcoal/70">{leg.from.city}</p>
             <p className="mt-1 text-xs text-safari-charcoal/50">{leg.from.airport}</p>
+            {leg.from.terminal && (
+              <p className="mt-0.5 text-xs text-safari-charcoal/45">{leg.from.terminal}</p>
+            )}
           </div>
 
           <div className="hidden text-center text-2xl text-safari-charcoal/30 sm:block sm:pt-6">
@@ -64,6 +68,9 @@ function LegRow({ leg }: { leg: InternationalLeg }) {
             <p className="mt-1 font-serif text-lg text-safari-charcoal">{leg.to.code}</p>
             <p className="text-sm text-safari-charcoal/70">{leg.to.city}</p>
             <p className="mt-1 text-xs text-safari-charcoal/50">{leg.to.airport}</p>
+            {leg.to.terminal && (
+              <p className="mt-0.5 text-xs text-safari-charcoal/45">{leg.to.terminal}</p>
+            )}
           </div>
         </div>
 
@@ -172,7 +179,7 @@ export function InternationalJourneySection({
               {journey.title}
             </h3>
             <p className="mt-1 text-sm text-white/85">
-              {journey.route} · Emirates First Class
+              {journey.route} · Emirates {EMIRATES_CABIN}
             </p>
           </div>
         </div>

@@ -37,8 +37,8 @@ export default function DepartureCard({ flight }: DepartureCardProps) {
           <FlightTimeBadge>Charter arrives {flight.arrivalTime}</FlightTimeBadge>
         </div>
         <p className="mt-3 text-sm leading-relaxed text-safari-charcoal/80">
-          Final charter leg from the Mara — connect for your international flight
-          home.
+          Final charter leg from the Mara — connect at Terminal 1B for Emirates
+          EK 720 (departs 4:35 PM).
         </p>
       </div>
     </article>

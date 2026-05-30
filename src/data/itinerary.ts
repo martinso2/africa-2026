@@ -41,10 +41,10 @@ export interface SafariStop {
 
 export const TRIP = {
   title: "Martin Family Safari 2026",
-  dates: "June 4–15, 2026",
+  dates: "June 4–16, 2026",
   subtitle: "Nairobi, Laikipia, Loisaba, and the Maasai Mara",
   startDate: "2026-06-04",
-  endDate: "2026-06-15",
+  endDate: "2026-06-16",
 } as const;
 
 export const ITINERARY: SafariStop[] = [

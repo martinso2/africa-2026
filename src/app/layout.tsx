@@ -17,7 +17,7 @@ const sourceSans = Source_Sans_3({
 export const metadata: Metadata = {
   title: "Africa 2026 Safari | Martin Family",
   description:
-    "Martin Family Safari 2026 — Kenya, June 4–15. Accommodations, itinerary, weather, and photography notes.",
+    "Martin Family Safari 2026 — Kenya, June 4–16. Accommodations, itinerary, weather, and photography notes.",
 };
 
 export const viewport = {

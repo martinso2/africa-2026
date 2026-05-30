@@ -27,7 +27,7 @@ export const NBO_TO_HEMINGWAYS: GroundTransfer = {
   from: {
     name: "NBO",
     subtitle: "Nairobi",
-    detail: "Jomo Kenyatta International",
+    detail: "Jomo Kenyatta International · Terminal 1E",
     time: "2:30 PM",
     coordinates: NBO,
   },
