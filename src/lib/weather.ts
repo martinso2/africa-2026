@@ -5,6 +5,9 @@ export interface DailyForecast {
   rainChance: number;
   condition: string;
   icon: string;
+  sunrise: string;
+  sunset: string;
+  moonPhase: string;
 }
 
 /** OpenWeather + page cache: refresh every 12 hours on Vercel */
@@ -28,6 +31,8 @@ export interface WeatherData {
   isSample: boolean;
 }
 
+const FORECAST_DAYS = 10;
+
 const SAMPLE_CONDITIONS = [
   { condition: "Partly cloudy", icon: "⛅" },
   { condition: "Sunny", icon: "☀️" },
@@ -35,6 +40,40 @@ const SAMPLE_CONDITIONS = [
   { condition: "Clear", icon: "🌤️" },
   { condition: "Overcast", icon: "☁️" },
 ];
+
+function moonPhaseLabel(phase: number): string {
+  if (phase < 0.03 || phase >= 0.97) return "New Moon";
+  if (phase < 0.22) return "Waxing Crescent";
+  if (phase < 0.28) return "First Quarter";
+  if (phase < 0.47) return "Waxing Gibbous";
+  if (phase < 0.53) return "Full Moon";
+  if (phase < 0.72) return "Waning Gibbous";
+  if (phase < 0.78) return "Last Quarter";
+  return "Waning Crescent";
+}
+
+function formatHourMinute(hours: number, minutes: number): string {
+  const normalizedHours = ((hours % 24) + 24) % 24;
+  const period = normalizedHours >= 12 ? "PM" : "AM";
+  const hour12 = normalizedHours % 12 || 12;
+  const minute = String(minutes).padStart(2, "0");
+  return `${hour12}:${minute} ${period}`;
+}
+
+function formatUnixWithOffset(unixSeconds: number, offsetSeconds: number): string {
+  const date = new Date((unixSeconds + offsetSeconds) * 1000);
+  const hours = date.getUTCHours();
+  const minutes = date.getUTCMinutes();
+  return formatHourMinute(hours, minutes);
+}
+
+function sampleMoonPhase(date: Date): number {
+  const synodicMonth = 29.53058867;
+  const baseNewMoonUtc = Date.UTC(2024, 0, 11, 11, 57, 0);
+  const daysSinceBase = (date.getTime() - baseNewMoonUtc) / 86_400_000;
+  const normalized = ((daysSinceBase % synodicMonth) + synodicMonth) % synodicMonth;
+  return normalized / synodicMonth;
+}
 
 function generateSampleForecast(
   lat: number,
@@ -44,10 +83,15 @@ function generateSampleForecast(
   const seed = Math.abs(Math.round(lat * 100 + lon * 100));
   const baseTemp = lat > 0 ? 75 : 72;
 
-  const daily: DailyForecast[] = Array.from({ length: 10 }, (_, i) => {
+  const daily: DailyForecast[] = Array.from({ length: FORECAST_DAYS }, (_, i) => {
     const date = new Date();
     date.setDate(date.getDate() + i);
     const cond = SAMPLE_CONDITIONS[(seed + i) % SAMPLE_CONDITIONS.length];
+    const sunriseHour = 6 + ((seed + i) % 2);
+    const sunriseMinute = ((seed + i * 7) % 4) * 10;
+    const sunsetHour = 18 + ((seed + i) % 2);
+    const sunsetMinute = ((seed + i * 5) % 4) * 10;
+    const phase = sampleMoonPhase(date);
     return {
       date: date.toISOString().slice(0, 10),
       high: baseTemp + ((seed + i * 3) % 6) - 2,
@@ -55,6 +99,9 @@ function generateSampleForecast(
       rainChance: (seed + i * 7) % 35,
       condition: cond.condition,
       icon: cond.icon,
+      sunrise: formatHourMinute(sunriseHour, sunriseMinute),
+      sunset: formatHourMinute(sunsetHour, sunsetMinute),
+      moonPhase: moonPhaseLabel(phase),
     };
   });
 
@@ -112,13 +159,17 @@ async function fetchOpenWeatherMap(
   }
 
   const data = await res.json();
+  const timezoneOffsetSeconds = Number(data.timezone_offset ?? 0);
   const currentCond = weatherCodeToCondition(data.current?.weather?.[0]?.id ?? 800);
 
-  const daily: DailyForecast[] = (data.daily ?? []).slice(0, 10).map(
+  const daily: DailyForecast[] = (data.daily ?? []).slice(0, FORECAST_DAYS).map(
     (day: {
       dt: number;
       temp: { max: number; min: number };
       pop: number;
+      sunrise?: number;
+      sunset?: number;
+      moon_phase?: number;
       weather: { id: number }[];
     }) => {
       const cond = weatherCodeToCondition(day.weather?.[0]?.id ?? 800);
@@ -129,6 +180,13 @@ async function fetchOpenWeatherMap(
         rainChance: Math.round((day.pop ?? 0) * 100),
         condition: cond.condition,
         icon: cond.icon,
+        sunrise: day.sunrise
+          ? formatUnixWithOffset(day.sunrise, timezoneOffsetSeconds)
+          : "—",
+        sunset: day.sunset
+          ? formatUnixWithOffset(day.sunset, timezoneOffsetSeconds)
+          : "—",
+        moonPhase: moonPhaseLabel(day.moon_phase ?? 0),
       };
     },
   );

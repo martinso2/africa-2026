@@ -5,6 +5,7 @@ import { useState } from "react";
 const NAV_ITEMS = [
   { href: "#overview", label: "Overview" },
   { href: "#international-flights", label: "To Kenya" },
+  { href: "#weather-summary", label: "Weather" },
   { href: "#stops", label: "Stops" },
   { href: "#itinerary", label: "Itinerary" },
   { href: "#return-flights", label: "Home" },

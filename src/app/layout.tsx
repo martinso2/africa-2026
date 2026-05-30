@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Source_Sans_3 } from "next/font/google";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -35,6 +36,7 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${sourceSans.variable} h-full`}>
       <body className="min-h-full bg-safari-ivory font-sans text-safari-charcoal antialiased">
         {children}
+        <ServiceWorkerRegister />
       </body>
     </html>
   );

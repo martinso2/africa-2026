@@ -4,6 +4,8 @@ import OutboundFlights from "@/components/OutboundFlights";
 import ReturnFlights from "@/components/ReturnFlights";
 import ItineraryTimeline from "@/components/ItineraryTimeline";
 import SafariStopSection from "@/components/SafariStopSection";
+import TodayAtCamp from "@/components/TodayAtCamp";
+import WeatherSummarySection from "@/components/WeatherSummarySection";
 import { ITINERARY, TRIP } from "@/data/itinerary";
 import { getWeather } from "@/lib/weather";
 
@@ -27,6 +29,8 @@ export default async function Home() {
       <Hero />
 
       <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-14">
+        <TodayAtCamp stops={ITINERARY} weatherByStop={weatherResults} />
+
         <OutboundFlights />
 
         <section id="stops" className="scroll-mt-20">
@@ -46,6 +50,8 @@ export default async function Home() {
         <section className="mb-10 sm:mb-14">
           <ItineraryTimeline />
         </section>
+
+        <WeatherSummarySection stops={ITINERARY} weatherByStop={weatherResults} />
       </main>
 
       <footer className="border-t border-safari-sand/60 bg-safari-green px-4 py-8 text-center text-sm text-safari-sand supports-[padding:max(0px)]:pb-[max(2rem,env(safe-area-inset-bottom))]">
