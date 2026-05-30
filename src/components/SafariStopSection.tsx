@@ -1,5 +1,6 @@
 import { type ReactNode } from "react";
 import AccommodationCard from "@/components/AccommodationCard";
+import HemingwaysWilsonTransfer from "@/components/HemingwaysWilsonTransfer";
 import PropertySpotlight from "@/components/PropertySpotlight";
 import OutboundFlightPanel from "@/components/OutboundFlightPanel";
 import WeatherCard from "@/components/WeatherCard";
@@ -64,6 +65,13 @@ export default async function SafariStopSection({
             {insight && <PropertySpotlight insight={insight} />}
           </div>
         </div>
+
+        {stop.id === "hemingways" && outboundFlight && (
+          <div>
+            <SectionLabel>Transfer to Wilson Airport (WIL)</SectionLabel>
+            <HemingwaysWilsonTransfer />
+          </div>
+        )}
 
         {outboundFlight && (
           <div>

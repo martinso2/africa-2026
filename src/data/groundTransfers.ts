@@ -19,6 +19,7 @@ export interface GroundTransfer {
 
 const NBO = { lat: -1.3192, lon: 36.9278 };
 const HEMINGWAYS = { lat: -1.3324, lon: 36.7117 };
+const WILSON = { lat: -1.3217, lon: 36.8148 };
 
 export const NBO_TO_HEMINGWAYS: GroundTransfer = {
   id: "nbo-hemingways",
@@ -39,4 +40,25 @@ export const NBO_TO_HEMINGWAYS: GroundTransfer = {
   },
   driveTimeEstimate: "45–75 min",
   notes: "Private transfer or hotel pickup — allow extra time for customs and Nairobi traffic.",
+};
+
+export const HEMINGWAYS_TO_WILSON: GroundTransfer = {
+  id: "hemingways-wilson",
+  date: "2026-06-06",
+  label: "Hemingways Hotel → Wilson Airport",
+  from: {
+    name: "Hemingways Hotel",
+    subtitle: "Karen, Nairobi",
+    detail: "Depart for domestic connection",
+    time: "Morning transfer",
+    coordinates: HEMINGWAYS,
+  },
+  to: {
+    name: "WIL",
+    subtitle: "Wilson Airport, Nairobi",
+    detail: "Safari charter departure point",
+    coordinates: WILSON,
+  },
+  driveTimeEstimate: "20–35 min",
+  notes: "Short private road transfer to Wilson Airport for the onward safari charter.",
 };

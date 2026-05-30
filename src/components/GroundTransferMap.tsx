@@ -179,7 +179,7 @@ export default function GroundTransferMap({ transfer }: GroundTransferMapProps) 
         <div className="grid gap-4 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wider text-safari-charcoal/50">
-              Arrive
+              From
             </p>
             <p className="mt-1 font-serif text-lg text-safari-charcoal">
               {transfer.from.name}
@@ -201,7 +201,7 @@ export default function GroundTransferMap({ transfer }: GroundTransferMapProps) 
 
           <div className="sm:text-right">
             <p className="text-xs font-semibold uppercase tracking-wider text-safari-charcoal/50">
-              Hotel
+              To
             </p>
             <p className="mt-1 font-serif text-lg text-safari-charcoal">{transfer.to.name}</p>
             <p className="text-sm text-safari-charcoal/70">{transfer.to.subtitle}</p>
@@ -215,7 +215,7 @@ export default function GroundTransferMap({ transfer }: GroundTransferMapProps) 
       <div
         ref={containerRef}
         className="h-56 w-full sm:h-72"
-        aria-label="Map showing drive from Nairobi airport to Hemingways Hotel"
+        aria-label={`Map showing drive from ${transfer.from.name} to ${transfer.to.name}`}
       />
 
       <div className="flex flex-wrap gap-4 border-t border-safari-sand/60 px-5 py-3 text-xs text-safari-charcoal/70 sm:px-6">
