@@ -3,10 +3,15 @@ import { ITINERARY, TRIP, type SafariStop } from "@/data/itinerary";
 export function formatDateRange(checkIn: string, checkOut: string): string {
   const inDate = new Date(`${checkIn}T12:00:00`);
   const outDate = new Date(`${checkOut}T12:00:00`);
-  const opts: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
-  const inStr = inDate.toLocaleDateString("en-US", opts);
+  const inStr = inDate.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "short",
+    day: "numeric",
+  });
   const outStr = outDate.toLocaleDateString("en-US", {
-    ...opts,
+    weekday: "long",
+    month: "long",
+    day: "numeric",
     year: "numeric",
   });
   return `${inStr} – ${outStr}`;
@@ -45,16 +50,14 @@ export function getUpcomingStop(referenceDate = new Date()): SafariStop | null {
   }
 
   const current = getCurrentStop(referenceDate);
-  if (!current) return ITINERARY[0];
+  if (!current) return ITINERARY[0] ?? null;
 
   const currentIndex = ITINERARY.findIndex((s) => s.id === current.id);
-  if (today < current.checkIn) {
-    return current;
+  if (currentIndex === -1 || currentIndex >= ITINERARY.length - 1) {
+    return null;
   }
-  if (currentIndex < ITINERARY.length - 1) {
-    return ITINERARY[currentIndex + 1];
-  }
-  return null;
+
+  return ITINERARY[currentIndex + 1];
 }
 
 export function getStopStatus(

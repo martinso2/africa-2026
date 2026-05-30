@@ -29,7 +29,7 @@ export default function PropertySpotlight({ insight }: PropertySpotlightProps) {
               key={item}
               className="flex gap-2 text-sm text-safari-charcoal/75"
             >
-              <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-safari-green" />
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-safari-green" />
               {item}
             </li>
           ))}

@@ -26,9 +26,12 @@ export interface SafariStop {
   };
   description: string;
   websiteUrl: string;
+  /** Curated bullets when live scrape returns nav/menu junk */
+  spotlightHighlights?: string[];
   weatherLocationName: string;
   photoFolder: string;
   heroImage: string;
+  heroVideo?: string;
   galleryImages: string[];
   placeholderHero: string;
   placeholderGallery: string[];
@@ -53,24 +56,30 @@ export const ITINERARY: SafariStop[] = [
     checkIn: "2026-06-05",
     checkOut: "2026-06-06",
     nights: 1,
-    coordinates: { lat: -1.3192, lon: 36.7073 },
+    coordinates: { lat: -1.3324, lon: 36.7117 },
     description:
       "An elegant boutique hotel in Karen — the perfect soft landing after the long flight, with refined comfort before the bush.",
-    websiteUrl: "https://www.hemingways-collection.com/hotel/hemingways-nairobi/",
+    websiteUrl: "https://www.hemingways-collection.com/nairobi/",
+    spotlightHighlights: [
+      "Boutique hotel in Karen — a calm landing after the long flight",
+      "Spa, pool, and terrace dining on the Nairobi hillside",
+      "Elegant suites with garden views before heading to the bush",
+    ],
     weatherLocationName: "Nairobi",
     photoFolder: "/images/hemingways",
     heroImage: "/images/hemingways/hero.jpg",
+    heroVideo: "/video/Nairobi-Loop_SML.mp4",
     galleryImages: [
       "/images/hemingways/room.jpg",
       "/images/hemingways/lounge.jpg",
       "/images/hemingways/garden.jpg",
     ],
     placeholderHero:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80",
+      "https://www.hemingways-collection.com/wp-content/uploads/2025/06/Property-Aerial-View-3-scaled.jpg",
     placeholderGallery: [
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80",
-      "https://images.unsplash.com/photo-1611892440505-42a988e24f32?w=800&q=80",
-      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80",
+      "https://www.hemingways-collection.com/wp-content/uploads/2025/08/Deluxe-Suite-Double-Bedroom-1-scaled.jpg",
+      "https://www.hemingways-collection.com/wp-content/uploads/2025/07/Hemingways_Nairobi_033-scaled.jpg",
+      "https://www.hemingways-collection.com/wp-content/uploads/2025/07/Hemingways_Nairobi_Spa_pool_12-scaled.jpg",
     ],
     packingNotes: {
       morning:
@@ -108,7 +117,7 @@ export const ITINERARY: SafariStop[] = [
     coordinates: { lat: 0.2833, lon: 37.0667 },
     description:
       "A private wilderness camp on the Laikipia Plateau — exclusive game drives, dramatic landscapes, and star-filled nights.",
-    websiteUrl: "https://www.enasoit.com/",
+    websiteUrl: "https://enasoitcollection.com/",
     weatherLocationName: "Laikipia",
     photoFolder: "/images/enasoit",
     heroImage: "/images/enasoit/hero.jpg",
@@ -118,11 +127,11 @@ export const ITINERARY: SafariStop[] = [
       "/images/enasoit/wildlife.jpg",
     ],
     placeholderHero:
-      "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&q=80",
+      "https://enasoitcollection.com/wp-content/uploads/2020/04/ENASOIT_Silverless1019_126-1024x683.jpg",
     placeholderGallery: [
-      "https://images.unsplash.com/photo-1549366021-9f761d040683?w=800&q=80",
-      "https://images.unsplash.com/photo-1504177847869-7624238d9975?w=800&q=80",
-      "https://images.unsplash.com/photo-1489392197819-41fb497a678e?w=800&q=80",
+      "https://enasoitcollection.com/wp-content/uploads/2020/04/ENASOIT_Silverless1019_045_1200px-1-1024x692.jpg",
+      "https://enasoitcollection.com/wp-content/uploads/2020/04/ENASOIT_Silverless1019_178_1200px-1-1024x683.jpg",
+      "https://enasoitcollection.com/wp-content/uploads/2020/04/ENASOIT_Silverless1019_309_1200px-1-1024x683.jpg",
     ],
     packingNotes: {
       morning:
@@ -170,13 +179,14 @@ export const ITINERARY: SafariStop[] = [
       "/images/loisaba/tent.jpg",
       "/images/loisaba/view.jpg",
       "/images/loisaba/pool.jpg",
+      "/images/loisaba/lodge.jpg",
     ],
-    placeholderHero:
-      "https://images.unsplash.com/photo-1504280390367-361c66d9e289?w=1200&q=80",
+    placeholderHero: "/images/loisaba/hero.jpg",
     placeholderGallery: [
-      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
-      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80",
-      "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80",
+      "/images/loisaba/tent.jpg",
+      "/images/loisaba/view.jpg",
+      "/images/loisaba/pool.jpg",
+      "/images/loisaba/lodge.jpg",
     ],
     packingNotes: {
       morning:
@@ -224,13 +234,14 @@ export const ITINERARY: SafariStop[] = [
       "/images/naboisho/tent.jpg",
       "/images/naboisho/savanna.jpg",
       "/images/naboisho/wildlife.jpg",
+      "/images/naboisho/lounge.jpg",
     ],
-    placeholderHero:
-      "https://images.unsplash.com/photo-1511735111819-9a3f0d0b4a78?w=1200&q=80",
+    placeholderHero: "/images/naboisho/hero.jpg",
     placeholderGallery: [
-      "https://images.unsplash.com/photo-1547970810-dc77054a2179?w=800&q=80",
-      "https://images.unsplash.com/photo-1456926631395-248aba679134?w=800&q=80",
-      "https://images.unsplash.com/photo-1535338454772-d7245134d665?w=800&q=80",
+      "/images/naboisho/tent.jpg",
+      "/images/naboisho/savanna.jpg",
+      "/images/naboisho/wildlife.jpg",
+      "/images/naboisho/lounge.jpg",
     ],
     packingNotes: {
       morning:

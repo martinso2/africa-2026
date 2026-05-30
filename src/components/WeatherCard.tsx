@@ -5,14 +5,6 @@ interface WeatherCardProps {
   weather: WeatherData;
 }
 
-function formatDay(dateStr: string): string {
-  return new Date(`${dateStr}T12:00:00`).toLocaleDateString("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-  });
-}
-
 export default function WeatherCard({ stopName, weather }: WeatherCardProps) {
   return (
     <article className="overflow-hidden rounded-2xl border border-safari-sand/80 bg-white shadow-sm">
@@ -37,13 +29,13 @@ export default function WeatherCard({ stopName, weather }: WeatherCardProps) {
           </span>
           <div>
             <p className="text-3xl font-light text-safari-charcoal">
-              {weather.current.temp}°C
+              {weather.current.temp}°F
             </p>
             <p className="text-sm text-safari-charcoal/70">
               {weather.current.condition}
             </p>
             <p className="mt-1 text-xs text-safari-charcoal/50">
-              Humidity {weather.current.humidity}% · Wind {weather.current.windSpeed} km/h
+              Humidity {weather.current.humidity}% · Wind {weather.current.windSpeed} mph
             </p>
           </div>
         </div>
@@ -64,36 +56,6 @@ export default function WeatherCard({ stopName, weather }: WeatherCardProps) {
               >
                 <span className="font-semibold text-safari-green">{item.label}: </span>
                 <span className="text-safari-charcoal/80">{item.text}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-5">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-safari-charcoal/50">
-            {weather.daily.length}-Day Forecast
-          </p>
-          <div className="space-y-2">
-            {weather.daily.map((day) => (
-              <div
-                key={day.date}
-                className="flex items-center justify-between rounded-lg border border-safari-sand/40 px-3 py-2.5 text-sm"
-              >
-                <div className="flex items-center gap-3">
-                  <span aria-hidden="true">{day.icon}</span>
-                  <div>
-                    <p className="font-medium text-safari-charcoal">{formatDay(day.date)}</p>
-                    <p className="text-xs text-safari-charcoal/50">{day.condition}</p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <p className="font-medium text-safari-charcoal">
-                    {day.high}° / {day.low}°
-                  </p>
-                  <p className="text-xs text-safari-charcoal/50">
-                    Rain {day.rainChance}%
-                  </p>
-                </div>
               </div>
             ))}
           </div>

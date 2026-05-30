@@ -4,10 +4,10 @@ import { useState } from "react";
 
 const NAV_ITEMS = [
   { href: "#overview", label: "Overview" },
-  { href: "#accommodations", label: "Stays" },
+  { href: "#international-flights", label: "To Kenya" },
+  { href: "#stops", label: "Stops" },
   { href: "#itinerary", label: "Itinerary" },
-  { href: "#weather", label: "Weather" },
-  { href: "#notes", label: "Notes" },
+  { href: "#return-flights", label: "Home" },
 ];
 
 export default function Navigation() {

@@ -39,7 +39,7 @@ function generateSampleForecast(
   locationName: string,
 ): WeatherData {
   const seed = Math.abs(Math.round(lat * 100 + lon * 100));
-  const baseTemp = lat > 0 ? 24 : 22;
+  const baseTemp = lat > 0 ? 75 : 72;
 
   const daily: DailyForecast[] = Array.from({ length: 10 }, (_, i) => {
     const date = new Date();
@@ -48,7 +48,7 @@ function generateSampleForecast(
     return {
       date: date.toISOString().slice(0, 10),
       high: baseTemp + ((seed + i * 3) % 6) - 2,
-      low: baseTemp - 8 + ((seed + i) % 4),
+      low: baseTemp - 15 + ((seed + i) % 4),
       rainChance: (seed + i * 7) % 35,
       condition: cond.condition,
       icon: cond.icon,
@@ -63,13 +63,13 @@ function generateSampleForecast(
       condition: today.condition,
       icon: today.icon,
       humidity: 45 + (seed % 30),
-      windSpeed: 8 + (seed % 12),
+      windSpeed: 5 + (seed % 8),
     },
     daily,
     guidance: {
-      morning: `Cool start around ${today.low}°C — pack warm layers for early game drives.`,
-      midday: `Warming to ~${today.high}°C — sun protection and breathable fabrics recommended.`,
-      evening: `Cooling to ${today.low + 2}°C — add a fleece or light jacket for sundowners.`,
+      morning: `Cool start around ${today.low}°F — pack warm layers for early game drives.`,
+      midday: `Warming to ~${today.high}°F — sun protection and breathable fabrics recommended.`,
+      evening: `Cooling to ${today.low + 4}°F — add a fleece or light jacket for sundowners.`,
     },
     isSample: true,
   };
@@ -98,7 +98,7 @@ async function fetchOpenWeatherMap(
   url.searchParams.set("lat", String(lat));
   url.searchParams.set("lon", String(lon));
   url.searchParams.set("appid", apiKey);
-  url.searchParams.set("units", "metric");
+  url.searchParams.set("units", "imperial");
   url.searchParams.set("exclude", "minutely,hourly,alerts");
 
   const res = await fetch(url.toString(), { next: { revalidate: 3600 } });
@@ -132,17 +132,17 @@ async function fetchOpenWeatherMap(
   return {
     location: locationName,
     current: {
-      temp: Math.round(data.current?.temp ?? today?.high ?? 22),
+      temp: Math.round(data.current?.temp ?? today?.high ?? 72),
       condition: currentCond.condition,
       icon: currentCond.icon,
       humidity: data.current?.humidity ?? 50,
-      windSpeed: Math.round(data.current?.wind_speed ?? 10),
+      windSpeed: Math.round(data.current?.wind_speed ?? 6),
     },
     daily,
     guidance: {
-      morning: `Early start ~${today?.low ?? 14}°C — layer up for dawn game drives.`,
-      midday: `Peak ~${today?.high ?? 26}°C — hat, sunscreen, and light neutral clothing.`,
-      evening: `Sunset cool-down ~${(today?.low ?? 14) + 2}°C — bring a warm layer for the vehicle.`,
+      morning: `Early start ~${today?.low ?? 58}°F — layer up for dawn game drives.`,
+      midday: `Peak ~${today?.high ?? 79}°F — hat, sunscreen, and light neutral clothing.`,
+      evening: `Sunset cool-down ~${(today?.low ?? 58) + 4}°F — bring a warm layer for the vehicle.`,
     },
     isSample: false,
   };

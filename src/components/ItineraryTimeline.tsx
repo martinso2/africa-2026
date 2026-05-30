@@ -22,7 +22,7 @@ export default function ItineraryTimeline() {
                 <div className="absolute left-[15px] top-8 h-[calc(100%-2rem)] w-0.5 bg-safari-sand sm:left-[19px]" />
               )}
 
-              <div className="relative z-10 flex-shrink-0">
+              <div className="relative z-10 shrink-0">
                 <div
                   className={`flex h-8 w-8 items-center justify-center rounded-full border-2 sm:h-10 sm:w-10 ${
                     status === "current"

@@ -1,14 +1,25 @@
 import type { SafariStop } from "@/data/itinerary";
+import type { ResolvedStopImages } from "@/lib/local-images";
+import SafariImage from "@/components/SafariImage";
+import { getHeroFallback, getHeroImage } from "@/lib/images";
 import { formatDateRange } from "@/lib/dates";
 
 interface StopCardProps {
   stop: SafariStop;
+  resolvedImages: ResolvedStopImages;
   label: string;
   variant: "current" | "upcoming";
 }
 
-export default function StopCard({ stop, label, variant }: StopCardProps) {
+export default function StopCard({
+  stop,
+  resolvedImages,
+  label,
+  variant,
+}: StopCardProps) {
   const isCurrent = variant === "current";
+  const heroSrc = getHeroImage(stop, resolvedImages);
+  const heroFallback = getHeroFallback(stop);
 
   return (
     <article
@@ -19,12 +30,26 @@ export default function StopCard({ stop, label, variant }: StopCardProps) {
       }`}
     >
       <div className="relative h-40 overflow-hidden sm:h-48">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={stop.placeholderHero}
-          alt={stop.propertyName}
-          className="h-full w-full object-cover"
-        />
+        {stop.heroVideo ? (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={heroSrc}
+            className="h-full w-full object-cover"
+            aria-label={`${stop.propertyName} video tour`}
+          >
+            <source src={stop.heroVideo} type="video/mp4" />
+          </video>
+        ) : (
+          <SafariImage
+            src={heroSrc}
+            fallbackSrc={heroFallback}
+            alt={stop.propertyName}
+            className="h-full w-full object-cover"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         <span
           className={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider ${

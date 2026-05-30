@@ -2,67 +2,47 @@
 
 import { useState } from "react";
 import type { SafariStop } from "@/data/itinerary";
+import SafariImage from "@/components/SafariImage";
+import AccommodationHero from "@/components/AccommodationHero";
 import { formatDateRange } from "@/lib/dates";
-import { getGalleryImages, getHeroFallback, getHeroImage } from "@/lib/images";
+import type { ResolvedStopImages } from "@/lib/local-images";
+import { getGalleryImages, getHeroImage } from "@/lib/images";
 
 interface AccommodationCardProps {
   stop: SafariStop;
+  resolvedImages: ResolvedStopImages;
   embedded?: boolean;
-}
-
-function SafariImage({
-  src,
-  fallback,
-  alt,
-  className,
-}: {
-  src: string;
-  fallback: string;
-  alt: string;
-  className?: string;
-}) {
-  const [imgSrc, setImgSrc] = useState(src);
-
-  return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={imgSrc}
-      alt={alt}
-      className={className}
-      onError={() => setImgSrc(fallback)}
-    />
-  );
+  hideId?: boolean;
 }
 
 export default function AccommodationCard({
   stop,
+  resolvedImages,
   embedded = false,
+  hideId = false,
 }: AccommodationCardProps) {
   const [showGallery, setShowGallery] = useState(false);
-  const gallery = getGalleryImages(stop);
+  const gallery = getGalleryImages(stop, resolvedImages);
+  const heroSrc = getHeroImage(stop, resolvedImages);
+  const expandedImages = [
+    heroSrc,
+    ...resolvedImages.galleryImages,
+  ].map((src, i) => ({
+    src,
+    fallback:
+      i === 0
+        ? stop.placeholderHero
+        : (stop.placeholderGallery[i - 1] ?? stop.placeholderHero),
+  }));
 
   return (
     <article
-      id={stop.id}
+      id={hideId ? undefined : stop.id}
       className={`scroll-mt-24 overflow-hidden ${
         embedded ? "" : "rounded-2xl border border-safari-sand/80 bg-white shadow-sm"
       }`}
     >
-      <div className="relative aspect-[16/10] overflow-hidden sm:aspect-[16/9]">
-        <SafariImage
-          src={getHeroImage(stop)}
-          fallback={getHeroFallback(stop)}
-          alt={stop.propertyName}
-          className="h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-        <div className="absolute bottom-0 left-0 p-5 sm:p-6">
-          <h3 className="font-serif text-2xl text-white sm:text-3xl">
-            {stop.propertyName}
-          </h3>
-          <p className="mt-1 text-sm text-white/85">{stop.location}</p>
-        </div>
-      </div>
+      <AccommodationHero stop={stop} resolvedImages={resolvedImages} />
 
       <div className="p-5 sm:p-6">
         <div className="flex flex-wrap items-center gap-3 text-sm">
@@ -90,7 +70,7 @@ export default function AccommodationCard({
               >
                 <SafariImage
                   src={img.src}
-                  fallback={img.fallback}
+                  fallbackSrc={img.fallback}
                   alt={`${stop.propertyName} photo ${i + 1}`}
                   className="h-full w-full object-cover transition hover:scale-105"
                 />
@@ -109,14 +89,27 @@ export default function AccommodationCard({
 
         {showGallery && (
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            {[getHeroFallback(stop), ...stop.placeholderGallery].map((src, i) => (
+            {stop.heroVideo && (
+              <div className="col-span-full overflow-hidden rounded-xl bg-safari-sand/20">
+                <video
+                  controls
+                  playsInline
+                  poster={heroSrc}
+                  className="aspect-video w-full object-cover"
+                  aria-label={`${stop.propertyName} property video`}
+                >
+                  <source src={stop.heroVideo} type="video/mp4" />
+                </video>
+              </div>
+            )}
+            {expandedImages.map((img, i) => (
               <div
                 key={i}
                 className="aspect-[4/3] overflow-hidden rounded-xl bg-safari-sand/20"
               >
                 <SafariImage
-                  src={gallery[i]?.src ?? src}
-                  fallback={src}
+                  src={img.src}
+                  fallbackSrc={img.fallback}
                   alt={`${stop.propertyName} gallery ${i + 1}`}
                   className="h-full w-full object-cover"
                 />
