@@ -1,9 +1,12 @@
 import type { FlightLeg } from "@/data/flights";
 import { formatFlightDate } from "@/data/flights";
+import SafariImage from "@/components/SafariImage";
 import {
   FlightDateBadge,
   FlightTimeBadge,
 } from "@/components/FlightSchedule";
+
+const JKIA_IMAGE = "/images/flights/jkia.jpg";
 
 interface DepartureCardProps {
   flight: FlightLeg;
@@ -12,11 +15,14 @@ interface DepartureCardProps {
 export default function DepartureCard({ flight }: DepartureCardProps) {
   return (
     <article className="overflow-hidden rounded-2xl border border-safari-sand bg-safari-ivory/50 shadow-sm">
-      <div className="relative flex h-40 items-center justify-center overflow-hidden bg-safari-green sm:h-48">
-        <div className="absolute inset-0 bg-gradient-to-br from-safari-green to-safari-green-light opacity-90" />
-        <span className="relative text-5xl" aria-hidden="true">
-          ✈️
-        </span>
+      <div className="relative h-40 overflow-hidden sm:h-48">
+        <SafariImage
+          src={JKIA_IMAGE}
+          fallbackSrc={JKIA_IMAGE}
+          alt="Jomo Kenyatta International Airport, Nairobi"
+          className="h-full w-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/10 to-transparent" />
         <span className="absolute left-4 top-4 rounded-full bg-safari-sand px-3 py-1 text-xs font-semibold uppercase tracking-wider text-safari-charcoal">
           Homeward
         </span>
