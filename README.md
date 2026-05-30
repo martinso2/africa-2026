@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Africa 2026 Safari
 
-## Getting Started
+A mobile-first travel app for the **Martin Family Safari in Kenya**, June 5–15, 2026. View accommodations, the full itinerary, weather forecasts, and location-specific packing and photography notes.
 
-First, run the development server:
+Built with **Next.js**, **TypeScript**, **Tailwind CSS**, and the **App Router** — ready for GitHub and Vercel deployment.
+
+## Itinerary
+
+| Dates | Property | Location |
+|-------|----------|----------|
+| Jun 5–6 | Hemingways Hotel | Nairobi |
+| Jun 6–9 | Enasoit Camp | Laikipia |
+| Jun 9–12 | Loisaba Lodo Springs | Loisaba Conservancy |
+| Jun 12–15 | Naboisho Camp | Maasai Mara |
+
+## Quick Start
+
+### Install
+
+```bash
+npm install
+```
+
+### Run locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+npm start
+```
 
-## Learn More
+## Adding Photos
 
-To learn more about Next.js, take a look at the following resources:
+Drop your accommodation photos into these folders:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+public/images/hemingways/
+public/images/enasoit/
+public/images/loisaba/
+public/images/naboisho/
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Expected filenames (defined in `src/data/itinerary.ts`):
+
+- **Hemingways:** `hero.jpg`, `room.jpg`, `lounge.jpg`, `garden.jpg`
+- **Enasoit:** `hero.jpg`, `tent.jpg`, `landscape.jpg`, `wildlife.jpg`
+- **Loisaba:** `hero.jpg`, `tent.jpg`, `view.jpg`, `pool.jpg`
+- **Naboisho:** `hero.jpg`, `tent.jpg`, `savanna.jpg`, `wildlife.jpg`
+
+The app tries local images first and falls back to placeholder photos until yours are added.
+
+## Weather API Key
+
+Weather uses the [OpenWeatherMap One Call API 3.0](https://openweathermap.org/api/one-call-3). Without a key, the app shows **clearly labeled sample forecast data** and works fully otherwise.
+
+1. Copy the example env file:
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+2. Add your API key:
+
+   ```
+   NEXT_PUBLIC_WEATHER_API_KEY=your_actual_api_key
+   ```
+
+3. Restart the dev server.
+
+Weather is fetched by latitude/longitude from `src/data/itinerary.ts`.
+
+## Push to GitHub
+
+```bash
+git init          # if not already initialized
+git add .
+git commit -m "Initial Africa 2026 safari app"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/africa-2026.git
+git push -u origin main
+```
+
+**Never commit** `.env.local` or real API keys. Only `.env.example` belongs in the repo.
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push the repo to GitHub (see above).
+2. Go to [vercel.com/new](https://vercel.com/new) and import the repository.
+3. Vercel auto-detects Next.js — no extra build settings needed.
+4. Add the environment variable in **Project Settings → Environment Variables**:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   | Name | Value |
+   |------|-------|
+   | `NEXT_PUBLIC_WEATHER_API_KEY` | Your OpenWeatherMap API key |
+
+5. Deploy. Preview URLs are created on every push; production deploys from `main`.
+
+## Project Structure
+
+```
+src/
+├── app/              # App Router pages and API routes
+├── components/       # UI components
+├── data/             # Itinerary and trip data
+└── lib/              # Weather, dates, and image helpers
+public/
+└── images/           # Accommodation photos (drop yours here)
+```
+
+## Tech Stack
+
+- Next.js 16 (App Router)
+- TypeScript
+- Tailwind CSS 4
+- OpenWeatherMap API (optional)
+
+## License
+
+Private — Martin Family Safari 2026.
