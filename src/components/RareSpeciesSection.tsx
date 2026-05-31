@@ -142,9 +142,9 @@ function SpeciesSpread({
                 className="block h-auto max-h-[420px] w-full max-w-full object-contain lg:max-h-[520px]"
               />
 
-              {/* Figure caption — lower-left overlay on photo */}
+              {/* Figure caption — below image on mobile, overlay on desktop */}
               <figcaption
-                className="absolute bottom-3 left-3 max-w-[85%] border-l-[3px] px-3 py-2.5 backdrop-blur-[2px] sm:bottom-4 sm:left-4 sm:max-w-[min(20rem,75%)] sm:px-4 sm:py-3"
+                className="mt-2 w-full border-l-[3px] px-3 py-2.5 sm:px-4 sm:py-3 lg:absolute lg:bottom-4 lg:left-4 lg:mt-0 lg:max-w-[min(20rem,75%)] lg:w-auto lg:backdrop-blur-[2px]"
                 style={{ borderColor: NG_YELLOW, backgroundColor: "rgb(6 8 9 / 0.88)" }}
               >
                 <p
@@ -175,7 +175,6 @@ function SpeciesSpread({
             >
               {entry.morphology}
             </p>
-            <p>{entry.behavior}</p>
           </div>
         </div>
       </div>
@@ -207,8 +206,7 @@ export default function RareSpeciesSection() {
 
           <p className={`${NG_TEXT} mx-auto mt-6 max-w-xl text-center ${NG_FONT.intro} leading-relaxed text-white/65`}>
             Annotated sightings from the Martin expedition. Entries follow standard
-            zoological format; veracity follows standard safari humor — with extra
-            emphasis on creatures that are impossible, adorable, or both.
+            zoological format.
           </p>
         </div>
 
@@ -240,8 +238,7 @@ export default function RareSpeciesSection() {
             ))}
           </ul>
           <p className={`${NG_TEXT} mt-4 ${NG_FONT.fine} italic text-white/40`}>
-            Page numbers withheld by editorial policy. Please flip through like a
-            civilized mammal.
+            Page numbers withheld by editorial policy. 
           </p>
         </nav>
 
@@ -253,8 +250,7 @@ export default function RareSpeciesSection() {
         </div>
 
         <p className={`${NG_TEXT} py-6 text-center ${NG_FONT.fine} italic leading-relaxed text-white/40`}>
-          East African Field Catalogue, informal edition · not peer-reviewed · not
-          even peer-adjacent · all specimens photographed with love
+          East African Field Catalogue, 2026 edition · not peer-reviewed · blame global warming
         </p>
       </div>
     </section>

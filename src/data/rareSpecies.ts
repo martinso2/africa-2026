@@ -14,7 +14,6 @@ export interface RareSpecies {
   range: string;
   description: string;
   morphology: string;
-  behavior: string;
   image: string;
   photoCredit?: string;
 }
@@ -36,8 +35,6 @@ export const RARE_SPECIES: RareSpecies[] = [
       "A gruiform bird distinguished by an elaborate golden crest, crimson gular sac, and maroon secondary plumage. Though superficially resembling Balearica regulorum, Aurumcristatus magnificus exceeds its congener in self-esteem and wattage output.",
     morphology:
       "Crest: radiating golden filoplumes, erectile, visible from 2 km. Gular sac: inflatable, scarlet, used in courtship and small appliance charging (unconfirmed). Legs: disproportionately long; gait described in the literature as \"statuesque with commitment issues.\"",
-    behavior:
-      "Crepuscular display specialist. Inflates gular sac to emit ultrasonic honks believed to stun insects and impress photographers. Crest acts as a biological satellite dish; pairs synchronize head angles to \"boost signal\" before duetting. Never lands gracefully; native call is \"What? What?\"",
     image: "/images/species/static-watt-crane.jpg",
     photoCredit: "Martin Expedition · Laikipia, 2026",
   },
@@ -57,8 +54,6 @@ export const RARE_SPECIES: RareSpecies[] = [
       "A waterfowl with the devoted gaze of a Hungarian vizsla and the wings of a very patient goose. Observers report that it wags its entire body when praised, which is biologically improbable and emotionally devastating.",
     morphology:
       "Head: russet, velvety, with soulful amber eyes capable of silent judgment. Neck: elongated, transitions from fur to iridescent bronze-and-charcoal remiges. Legs: slender, wading, slightly damp from sincerity.",
-    behavior:
-      "Points at things it cannot explain. Stands in shallows facing the sunset for up to an hour, presumably composing thank-you notes. Never flies away when called; instead, paddles closer with visible hope.",
     image: "/images/species/Vizsla-Bird.jpeg",
     photoCredit: "Martin Expedition · Wetland fringe, 2026",
   },
@@ -78,8 +73,6 @@ export const RARE_SPECIES: RareSpecies[] = [
       "A lion cub in all facial respects, mounted on the chassis of a corgi. Field biologists agree it possesses the heart of a apex predator and the ground clearance of a mailbox.",
     morphology:
       "Mane: embryonic but earnest. Torso: elongated, low-slung, floofy. Paws: oversized, round, and somehow always dusty. Tail: present, optimistic.",
-    behavior:
-      "Attempts regal prowl; achieves enthusiastic waddle. Roar starts strong, ends in a squeak. Known to sit like a loaf while surveying kingdom. Will accept chin scratches if offered with appropriate reverence.",
     image: "/images/species/corgi-lion.png",
     photoCredit: "Martin Expedition · Mara track, 2026",
   },
@@ -99,8 +92,6 @@ export const RARE_SPECIES: RareSpecies[] = [
       "A mandrill whose facial palette exceeds the gamut of most monitors. The red nose alone has been mistaken for a traffic signal. Scientists describe the expression as \"formal portrait of someone who has opinions.\"",
     morphology:
       "Cheek ridges: cobalt, corrugated. Nasal region: scarlet, prominent, politically incorrect).",
-    behavior:
-      "Has no filter. Maintains eye contact longer than socially comfortable. Uses silence as a power move. Local guides insist it \"knows things.\" Loves superlatives.",
     image: "/images/species/Maga-Mango.jpeg",
     photoCredit: "Martin Expedition · Forest edge, 2026",
   },
@@ -120,8 +111,6 @@ export const RARE_SPECIES: RareSpecies[] = [
       "A compact canid adapted for bouncing through marsh grass like a furry pogo stick. Distinguished from ordinary corgis by webbed enthusiasm and an inability to respect dry socks.",
     morphology:
       "Ears: alert, satellite-dish scale. Body: loaf-shaped, buoyant. Coat: golden, water-repellent except when it isn't. Legs: short, powerful, spring-loaded.",
-    behavior:
-      "Hops rather than runs when excited (always). Disturbs herons, delights children, confuses ornithologists. Emits small splashes as a form of punctuation. Retreats to reeds when asked about taxonomy.",
     image: "/images/species/corgi-marsh-hopper.webp",
     photoCredit: "Martin Expedition · Reed channel, 2026",
   },
@@ -141,8 +130,6 @@ export const RARE_SPECIES: RareSpecies[] = [
       "A hippopotamus the size of a very confident corgi, or a corgi wearing the world's most serious snout. Either reading is correct and neither is less alarming at dawn.",
     morphology:
       "Snout: wide, grey, equipped with modest tusks and maximum sincerity. Ears: corgi-grade, rotate independently when gossiping. Body: barrel-shaped, plush, surprisingly buoyant.",
-    behavior:
-      "Submerges until only ears and nostrils show, like a periscope with feelings. Yawns for intimidation; effect is undermined by overall roundness. Grazes at night, naps by day, accepts compliments always.",
     image: "/images/species/corgi-potomus.jpeg",
     photoCredit: "Martin Expedition · River shallows, 2026",
   },
@@ -162,8 +149,6 @@ export const RARE_SPECIES: RareSpecies[] = [
       "A full-size hippopotamus bearing the warm, copper face of a vizsla who has never once raised its voice. Witnesses describe the encounter as \"meeting a therapist who weighs two tons.\"",
     morphology:
       "Head: russet, soft-eared, radiating calm. Body: classic hippo, glistening, with folds that catch sunset like sculpture. Feet: wide, patient, excellent for standing in meaning.",
-    behavior:
-      "Stands in water making gentle eye contact. Does not charge unless someone is rude. Blinks slowly to communicate approval. Local name translates roughly to \"large friend, do not startle.\"",
     image: "/images/species/Rosiepotamus.png",
     photoCredit: "Martin Expedition · Mara river, 2026",
   },
@@ -183,8 +168,6 @@ export const RARE_SPECIES: RareSpecies[] = [
       "A spotted felid with cheetah markings and corgi proportions — nature's attempt to make a sports car out of a dinner roll. Still achieves impressive bursts of speed, mostly toward food.",
     morphology:
       "Coat: golden with hyena-grade spots. Legs: famously short, surprisingly fast. Ears: large, radar-dish, always listening for treat bags. Expression: innocent, slightly guilty.",
-    behavior:
-      "Sprints in low gear with maximum commitment. Pauses mid-chase to look back as if asking for applause. Cannot climb termite mounds without assistance. Purrs when successful; wheezes when winded.",
     image: "/images/species/corgi-leopard.png",
     photoCredit: "Martin Expedition · Loisaba plains, 2026",
   },
@@ -204,8 +187,6 @@ export const RARE_SPECIES: RareSpecies[] = [
       "A guenon distinguished by silver-tipped crown fur, wide amber eyes, and a permanent expression of having just been briefed on something implausible. Hands frequently raised in a bilateral shrug posture not documented in any primate ethogram prior to 2026.",
     morphology:
       "Pelage: dark olive-grey with frosted dorsal cap and pale throat ruff. Palms: leathery, upturned, ideal for pointing out problems. Brow: permanently elevated; believed to have never come up with a solution.",
-    behavior:
-      "Diurnal observer of human and hybrid wildlife activity. Freezes when surprised, then raises both hands as if surrendering to the situation. Vocal repertoire reduced to a single soft exhale translated locally as \"that's offensive to me\" Hates accomplishing anything.",
     image: "/images/species/what-the-Fuck.jpeg",
     photoCredit: "Martin Expedition · Forest edge, 2026",
   },
