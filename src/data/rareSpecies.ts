@@ -30,7 +30,7 @@ export const RARE_SPECIES: RareSpecies[] = [
     order: "Gruiformes",
     conservationStatus: "Least Concern (too dramatic to fail)",
     habitat: "Anywhere with an audience",
-    range: "Pan-African; most visible when backlit",
+    range: "Most visible when backlit",
     description:
       "A gruiform bird distinguished by an elaborate golden crest, crimson gular sac, and maroon secondary plumage. Though superficially resembling Balearica regulorum, Aurumcristatus magnificus exceeds its congener in self-esteem and wattage output.",
     morphology:
@@ -51,7 +51,7 @@ export const RARE_SPECIES: RareSpecies[] = [
     habitat: "Shallow wetlands at golden hour",
     range: "Laikipia escarpment; follows the person with the camera",
     description:
-      "A waterfowl with the devoted gaze of a Hungarian vizsla and the wings of a very patient goose. Observers report that it wags its entire body when praised, which is biologically improbable and emotionally devastating.",
+      "A waterfowl with the devoted gaze of a Hungarian vizsla and the wings of a very patient goose. Observers report that it wags its entire body when praised, sticks to whatever human is present.",
     morphology:
       "Head: russet, velvety, with soulful amber eyes capable of silent judgment. Neck: elongated, transitions from fur to iridescent bronze-and-charcoal remiges. Legs: slender, wading, slightly damp from sincerity.",
     image: "/images/species/Vizsla-Bird.jpeg",
@@ -72,7 +72,7 @@ export const RARE_SPECIES: RareSpecies[] = [
     description:
       "A lion cub in all facial respects, mounted on the chassis of a corgi. Field biologists agree it possesses the heart of a apex predator and the ground clearance of a mailbox.",
     morphology:
-      "Mane: embryonic but earnest. Torso: elongated, low-slung, floofy. Paws: oversized, round, and somehow always dusty. Tail: present, optimistic.",
+      "Mane: embryonic but earnest. Torso: elongated, low-slung, floofy. Paws: oversized, round, and somehow always dusty. Tail: a work in progress.",
     image: "/images/species/corgi-lion.png",
     photoCredit: "Martin Expedition · Mara track, 2026",
   },
@@ -81,17 +81,17 @@ export const RARE_SPECIES: RareSpecies[] = [
     commonName: "Maga Mango",
     mainHeadline: "All In A Name",
     subhead: "Everything gets named after me, right?",
-    genus: "Namus Maximus",
+    genus: "Ego Nominus",
     species: "chromatica",
-    family: "Cercopithecidae (high saturation)",
+    family: "Dealus Makeus Maximus",
     order: "Primates",
-    conservationStatus: "Not Evaluated (too loud)",
+    conservationStatus: "Gone in less than 3 years",
     habitat: "Anywhere that has cameras",
-    range: "Central Africa; occasionally trending",
+    range: "East Coast of North America, Florida, California adverse.",
     description:
-      "A mandrill whose facial palette exceeds the gamut of most monitors. The red nose alone has been mistaken for a traffic signal. Scientists describe the expression as \"formal portrait of someone who has opinions.\"",
+      "A mandrill whose facial palette exceeds the gamut of most monitors. The red nose alone has been mistaken for a traffic signal. Scientists describe the expression as \"not fit for currency and name banned from well known arts and cultural institutions.\"",
     morphology:
-      "Cheek ridges: cobalt, corrugated. Nasal region: scarlet, prominent, politically incorrect).",
+      "Cheek ridges: cobalt, corrugated. Nasal region: scarlet, prominent, orange skin tone.",
     image: "/images/species/Maga-Mango.jpeg",
     photoCredit: "Martin Expedition · Forest edge, 2026",
   },
@@ -99,16 +99,16 @@ export const RARE_SPECIES: RareSpecies[] = [
     id: "corgi-marsh-hopper",
     commonName: "Corgi Marsh Hopper",
     mainHeadline: "Reed Hopper",
-    subhead: "How did a corgi learn to hop through the reeds?",
+    subhead: "Vocalizes at vacume cleaners for fun.",
     genus: "Canis",
     species: "paludis",
     family: "Canidae (amphibious enthusiasm)",
-    order: "Carnivora",
-    conservationStatus: "Data Deficient (too quick)",
-    habitat: "Reed beds, papyrus margins, soggy optimism",
-    range: "Eastern Mara wetlands",
+    order: "Treativora (treats)",
+    conservationStatus: "Thought to be around forever",
+    habitat: "Beds, couches, occasional crates",
+    range: "Upper West Side Parks",
     description:
-      "A compact canid adapted for bouncing through marsh grass like a furry pogo stick. Distinguished from ordinary corgis by webbed enthusiasm and an inability to respect dry socks.",
+      "A compact canid adapted for bouncing through marsh grass like a furry pogo stick. Distinguished from ordinary corgis by webbed enthusiasm and an inability to respect personal space.",
     morphology:
       "Ears: alert, satellite-dish scale. Body: loaf-shaped, buoyant. Coat: golden, water-repellent except when it isn't. Legs: short, powerful, spring-loaded.",
     image: "/images/species/corgi-marsh-hopper.webp",
@@ -186,8 +186,27 @@ export const RARE_SPECIES: RareSpecies[] = [
     description:
       "A guenon distinguished by silver-tipped crown fur, wide amber eyes, and a permanent expression of having just been briefed on something implausible. Hands frequently raised in a bilateral shrug posture not documented in any primate ethogram prior to 2026.",
     morphology:
-      "Pelage: dark olive-grey with frosted dorsal cap and pale throat ruff. Palms: leathery, upturned, ideal for pointing out problems. Brow: permanently elevated; believed to have never come up with a solution.",
+      "Pelage: dark olive-grey with frosted dorsal cap and pale throat ruff. Palms: leathery, upturned, ideal for pointing out problems. Brow: permanently elevated; believed to have never come up with a solution that didn't involve a tax increase.",
     image: "/images/species/what-the-Fuck.jpeg",
     photoCredit: "Martin Expedition · Forest edge, 2026",
+  },
+  {
+    id: "eastern-gopher-broke",
+    commonName: "Eastern Gopher Broke",
+    mainHeadline: "Keeping It Together",
+    subhead: "Is he on sentinel duty — or just checking for passports again?",
+    genus: "Suricata",
+    species: "patriarchus",
+    family: "Herpestidae (organizational subspecies)",
+    order: "Carnivora (itinerary-first)",
+    conservationStatus: "Stable (family dependent)",
+    habitat: "Airport lounges, lodge dining rooms, shaded termite mounds with a clear exit",
+    range: "Always three paces ahead of the group; globally migratory when bored",
+    description:
+      "Similar to a meerkat, but with a primary ecological role is keeping the family unit intact through logistics, punctuality, and repeated document verification. Arrives at airports early, misplaces at least one essential item per transit, and is known to abandon feeding areas without warning once dinner exceeds sixty-five minutes or interest wanes.",
+    morphology:
+      "Head: tan, earnest, crowned with woven straw hat. Eyes: magnified by round spectacles, in perpetual search of boarding passes. Paws: dexterous; rearranges flatware when understimulated. Posture: upright sentine. Spending habits: cash averse, credit card shy, Amazon points friendly.",
+    image: "/images/species/dad-meer.jpg",
+    photoCredit: "Martin Expedition · Savanna shade, 2026",
   },
 ];
