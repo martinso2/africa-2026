@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { href: "#stops", label: "Stops" },
   { href: "#itinerary", label: "Itinerary" },
   { href: "#return-flights", label: "Home" },
+  { href: "#rare-species", label: "Species" },
 ];
 
 export default function Navigation() {

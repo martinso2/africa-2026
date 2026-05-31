@@ -6,6 +6,7 @@ import ItineraryTimeline from "@/components/ItineraryTimeline";
 import SafariStopSection from "@/components/SafariStopSection";
 import TodayAtCamp from "@/components/TodayAtCamp";
 import WeatherSummarySection from "@/components/WeatherSummarySection";
+import RareSpeciesSection from "@/components/RareSpeciesSection";
 import { ITINERARY, TRIP } from "@/data/itinerary";
 import { getWeather } from "@/lib/weather";
 
@@ -53,6 +54,8 @@ export default async function Home() {
 
         <WeatherSummarySection stops={ITINERARY} weatherByStop={weatherResults} />
       </main>
+
+      <RareSpeciesSection />
 
       <footer className="border-t border-safari-sand/60 bg-safari-green px-4 py-8 text-center text-sm text-safari-sand supports-[padding:max(0px)]:pb-[max(2rem,env(safe-area-inset-bottom))]">
         <p className="font-serif text-lg text-safari-ivory">{TRIP.title}</p>
