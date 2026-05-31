@@ -81,19 +81,19 @@ export const RARE_SPECIES: RareSpecies[] = [
     commonName: "Maga Mango",
     mainHeadline: "All In A Name",
     subhead: "Everything gets named after me, right?",
-    genus: "Ego Nominus",
-    species: "chromatica",
-    family: "Dealus Makeus Maximus",
+    genus: "Ego Maximus Irrationalis",
+    species: "dramaticus",
+    family: "Dealus Makeus",
     order: "Primates",
     conservationStatus: "Gone in less than 3 years",
     habitat: "Anywhere that has cameras",
     range: "East Coast of North America, Florida, California adverse.",
     description:
-      "A mandrill whose facial palette exceeds the gamut of most monitors. The red nose alone has been mistaken for a traffic signal. Scientists describe the expression as \"not fit for currency and name banned from well known arts and cultural institutions.\"",
+      "A mandrill whose facial palette exceeds the gamut of most monitors. The red nose alone has been mistaken for a traffic signal. Scientists describe the expression as \"not fit for currency\". Name banned from well known arts and cultural institutions. May attack without warning. Known to wear flip-flops and behave in a similar manner.",
     morphology:
       "Cheek ridges: cobalt, corrugated. Nasal region: scarlet, prominent, orange skin tone.",
     image: "/images/species/Maga-Mango.jpeg",
-    photoCredit: "Martin Expedition · Forest edge, 2026",
+    photoCredit: "Slipper E. Slope · Edge of Reality, 2019",
   },
   {
     id: "corgi-marsh-hopper",
@@ -184,11 +184,11 @@ export const RARE_SPECIES: RareSpecies[] = [
     habitat: "Forest margins, anywhere news travels fast",
     range: "Eastern Kenya; follows safari vehicles for updates",
     description:
-      "A guenon distinguished by silver-tipped crown fur, wide amber eyes, and a permanent expression of having just been briefed on something implausible. Hands frequently raised in a bilateral shrug posture not documented in any primate ethogram prior to 2026.",
+      "A guenon distinguished by silver-tipped crown fur, wide amber eyes, and a permanent expression of having just been briefed on something implausible. Hands frequently raised in a bilateral shrug posture not documented in any primate ethogram prior to 2024. Never makes a decison without forming a committee that can't agree on anything except how bad things are",
     morphology:
       "Pelage: dark olive-grey with frosted dorsal cap and pale throat ruff. Palms: leathery, upturned, ideal for pointing out problems. Brow: permanently elevated; believed to have never come up with a solution that didn't involve a tax increase.",
     image: "/images/species/what-the-Fuck.jpeg",
-    photoCredit: "Martin Expedition · Forest edge, 2026",
+    photoCredit: "Taxem N. Hide · Edge of sanity, 2024",
   },
   {
     id: "eastern-gopher-broke",
@@ -203,9 +203,9 @@ export const RARE_SPECIES: RareSpecies[] = [
     habitat: "Airport lounges, lodge dining rooms, shaded termite mounds with a clear exit",
     range: "Always three paces ahead of the group; globally migratory when bored",
     description:
-      "Similar to a meerkat, but with a primary ecological role is keeping the family unit intact through logistics, punctuality, and repeated document verification. Arrives at airports early, misplaces at least one essential item per transit, and is known to abandon feeding areas without warning once dinner exceeds sixty-five minutes or interest wanes.",
+      "Similar to a meerkat, but with a primary ecological role of keeping the family unit together through, punctuality, and repeated document verification. Arrives at airports early, misplaces at least one essential item per transit, and is known to abandon feeding areas without warning once dinner exceeds sixty-five minutes or interest wanes.",
     morphology:
-      "Head: tan, earnest, crowned with woven straw hat. Eyes: magnified by round spectacles, in perpetual search of boarding passes. Paws: dexterous; rearranges flatware when understimulated. Posture: upright sentine. Spending habits: cash averse, credit card shy, Amazon points friendly.",
+      "Head: tan, earnest, crowned with woven straw hat. Eyes: magnified by round spectacles, in perpetual search of boarding passes. Paws: dexterous; rearranges flatware when understimulated. Posture: upright or napping. Spending habits: cash averse, credit card shy, Amazon points friendly.",
     image: "/images/species/dad-meer.jpg",
     photoCredit: "Martin Expedition · Savanna shade, 2026",
   },
