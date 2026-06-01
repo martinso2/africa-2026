@@ -209,4 +209,42 @@ export const RARE_SPECIES: RareSpecies[] = [
     image: "/images/species/dad-meer.jpg",
     photoCredit: "Martin Expedition · Savanna shade, 2026",
   },
+  {
+    id: "vizla-tiger",
+    commonName: "Vizla Tiger",
+    mainHeadline: "Stripes Of Devotion",
+    subhead: "Is that camouflage — or just extra pattern for attention?",
+    genus: "Canis",
+    species: "tigris aureus",
+    family: "Canidae × Panthera (affectionate chimera)",
+    order: "Carnivora (emotionally)",
+    conservationStatus: "Endangered (too handsome to ignore)",
+    habitat: "Tall golden grass at last light",
+    range: "Laikipia fringe; wherever a vizsla would follow you anyway",
+    description:
+      "A Hungarian vizsla puppy wearing the vertical striping of Panthera tigris as if nature ran out of solid coats. Field notes describe an animal that stalks only tennis balls and the person holding them, with tiger markings that serve no concealment purpose whatsoever in open savanna.",
+    morphology:
+      "Coat: russet-gold base with bold black tiger bars from muzzle to flank. Eyes: pale blue-grey, unsettlingly sincere. Ears: classic vizsla silk, tuned exclusively to treat wrappers. Stance: sit-stay with apex-predator patterning.",
+    image: "/images/species/Vizla-Tiger.jpeg",
+    photoCredit: "Martin Expedition · Golden hour grassland, 2026",
+  },
+  {
+    id: "vizsla-leopard",
+    commonName: "Vizslapard",
+    mainHeadline: "Head Of Gold",
+    subhead: "Why does the leopard have such a loyal face?",
+    genus: "Panthera",
+    species: "vizslensis",
+    family: "Felidae × Canidae (pointer merger)",
+    order: "Carnivora",
+    conservationStatus: "Data Deficient (too photogenic)",
+    habitat: "Open grassland, couches, beds, chairs, and sofas",
+    range: "Loisaba to Mara; craves attention and affection",
+    description:
+      "A leopard in all body respects — rosettes, long limbs, silent footfall — crowned with the unmistakable head of a vizsla. Observers report it points at distant prey, then forgets why it was stalking and checks back for approval.",
+    morphology:
+      "Head: copper, velvety, with amber eyes and floppy ears that undermine intimidation. Body: full leopard chassis, pale gold with black rosettes. Tail: feline length; always wags when praised an is known never to stop.",
+    image: "/images/species/Vizsla-Leopard.jpeg",
+    photoCredit: "Martin Expedition · Savanna edge, 2026",
+  },
 ];
