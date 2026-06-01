@@ -116,7 +116,7 @@ export const ITINERARY: SafariStop[] = [
     nights: 3,
     coordinates: { lat: 0.2833, lon: 37.0667 },
     description:
-      "A private wilderness camp on the Laikipia Plateau — exclusive game drives, dramatic landscapes, and star-filled nights.",
+      "A private wilderness camp on the Laikipia Plateau — exclusive game drives, dramatic landscapes, and star-filled nights. Enasoit may end up being the best astrophotography location of the entire trip.",
     websiteUrl: "https://enasoitcollection.com/",
     weatherLocationName: "Laikipia",
     photoFolder: "/images/enasoit",
@@ -145,7 +145,7 @@ export const ITINERARY: SafariStop[] = [
     },
     photographyNotes: {
       overview:
-        "Laikipia offers diverse subjects — reticulated giraffe, Grevy's zebra, and dramatic escarpment light.",
+        "Laikipia offers diverse subjects — reticulated giraffe, Grevy's zebra, and dramatic escarpment light. Enasoit may end up being the best astrophotography location of the entire trip — dark plateau skies, minimal light pollution, and tents open to the night.",
       lensSuggestions: [
         "200–500mm with 1.4× teleconverter for distant wildlife on the plateau",
         "24–70mm for camp scenes and landscape context shots",
@@ -157,6 +157,7 @@ export const ITINERARY: SafariStop[] = [
         "Pre-focus on a mid-tone subject before the drive; autofocus can hunt in low morning light",
         "Shoot at 1/1000s minimum for moving animals with the telephoto",
         "Bring lens wipes — morning dew on the front element is common",
+        "Prioritize clear nights here for Milky Way and star trails — this may be the trip's best astro spot",
       ],
     },
   },
