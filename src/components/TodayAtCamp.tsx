@@ -1,3 +1,4 @@
+import OfflineStatusBadge from "@/components/OfflineStatusBadge";
 import { type SafariStop, TRIP } from "@/data/itinerary";
 import { formatShortDate, getCurrentStop, getUpcomingStop } from "@/lib/dates";
 import type { WeatherData } from "@/lib/weather";
@@ -42,9 +43,7 @@ export default function TodayAtCamp({ stops, weatherByStop }: TodayAtCampProps) 
         <h2 className="font-serif text-2xl text-safari-green sm:text-3xl">
           {primaryStatus}
         </h2>
-        <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800">
-          Offline ready
-        </span>
+        <OfflineStatusBadge />
       </div>
 
       <div className="mt-4 grid gap-4 md:grid-cols-3">

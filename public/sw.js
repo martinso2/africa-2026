@@ -1,11 +1,67 @@
-const CACHE_NAME = "africa-2026-v1";
+const CACHE_NAME = "africa-2026-v2";
 const OFFLINE_URL = "/offline.html";
-const APP_SHELL = ["/", OFFLINE_URL, "/favicon.ico", "/safari.ico", "/safari.png"];
+const APP_SHELL = [
+  "/",
+  OFFLINE_URL,
+  "/manifest.webmanifest",
+  "/precache-manifest.json",
+  "/favicon.ico",
+  "/safari.ico",
+  "/safari.png",
+];
+
+async function putInCache(cache, request) {
+  try {
+    const response = await fetch(request);
+    if (response.ok) {
+      await cache.put(request, response);
+      return true;
+    }
+  } catch {
+    // Best-effort precache — one failed asset should not block the rest.
+  }
+  return false;
+}
+
+async function cacheUrlList(urls) {
+  const cache = await caches.open(CACHE_NAME);
+  let cached = 0;
+
+  for (const url of urls) {
+    if (await putInCache(cache, url)) cached += 1;
+  }
+
+  return cached;
+}
+
+async function precacheTripPack() {
+  const shellCached = await cacheUrlList(APP_SHELL);
+
+  try {
+    const manifestResponse = await fetch("/precache-manifest.json");
+    if (!manifestResponse.ok) return shellCached;
+
+    const manifest = await manifestResponse.json();
+    const tripAssets = (manifest.assets ?? []).filter((url) => !APP_SHELL.includes(url));
+    const tripCached = await cacheUrlList(tripAssets);
+
+    const clients = await self.clients.matchAll({ type: "window" });
+    clients.forEach((client) => {
+      client.postMessage({
+        type: "PRECACHE_COMPLETE",
+        cached: shellCached + tripCached,
+        total: APP_SHELL.length + tripAssets.length,
+      });
+    });
+
+    return shellCached + tripCached;
+  } catch {
+    return shellCached;
+  }
+}
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)).catch(() => {}),
-  );
+  event.waitUntil(precacheTripPack());
   self.skipWaiting();
 });
 
@@ -34,7 +90,9 @@ self.addEventListener("fetch", (event) => {
       url.pathname.startsWith("/images/") ||
       url.pathname.startsWith("/video/") ||
       url.pathname === "/favicon.ico" ||
-      url.pathname === "/safari.ico");
+      url.pathname === "/safari.ico" ||
+      url.pathname === "/safari.png" ||
+      url.pathname === "/precache-manifest.json");
   const isWeatherApi = sameOrigin && url.pathname.startsWith("/api/weather");
 
   if (isNavigation) {
@@ -48,7 +106,7 @@ self.addEventListener("fetch", (event) => {
         .catch(async () => {
           const cachedPage = await caches.match(request);
           if (cachedPage) return cachedPage;
-          return (await caches.match(OFFLINE_URL)) || Response.error();
+          return (await caches.match("/")) || (await caches.match(OFFLINE_URL)) || Response.error();
         }),
     );
     return;
