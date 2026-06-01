@@ -28,8 +28,6 @@ export interface SafariStop {
   };
   description: string;
   websiteUrl: string;
-  /** Curated bullets when live scrape returns nav/menu junk */
-  spotlightHighlights?: string[];
   weatherLocationName: string;
   photoFolder: string;
   heroImage: string;
@@ -62,11 +60,6 @@ export const ITINERARY: SafariStop[] = [
     description:
       "An elegant boutique hotel in Karen — the perfect soft landing after the long flight, with refined comfort before the bush.",
     websiteUrl: "https://www.hemingways-collection.com/nairobi/",
-    spotlightHighlights: [
-      "Boutique hotel in Karen — a calm landing after the long flight",
-      "Spa, pool, and terrace dining on the Nairobi hillside",
-      "Elegant suites with garden views before heading to the bush",
-    ],
     weatherLocationName: "Nairobi",
     photoFolder: "/images/hemingways",
     heroImage: "/images/hemingways/hero.jpg",

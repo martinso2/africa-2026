@@ -1,14 +1,12 @@
 import { type ReactNode } from "react";
 import AccommodationCard from "@/components/AccommodationCard";
 import HemingwaysWilsonTransfer from "@/components/HemingwaysWilsonTransfer";
-import PropertySpotlight from "@/components/PropertySpotlight";
 import OutboundFlightPanel from "@/components/OutboundFlightPanel";
 import WeatherCard from "@/components/WeatherCard";
 import NotesSection from "@/components/NotesSection";
 import { getOutboundFlight } from "@/data/flights";
 import type { SafariStop } from "@/data/itinerary";
 import { formatDateRange } from "@/lib/dates";
-import { getPropertyInsight } from "@/lib/firecrawl";
 import { resolveStopImages } from "@/lib/local-images";
 import type { WeatherData } from "@/lib/weather";
 
@@ -29,13 +27,6 @@ export default async function SafariStopSection({
   stop,
   weather,
 }: SafariStopSectionProps) {
-  const insight = stop.websiteUrl
-    ? await getPropertyInsight(
-        stop.websiteUrl,
-        stop.propertyName,
-        stop.spotlightHighlights ?? [],
-      )
-    : null;
   const outboundFlight = getOutboundFlight(stop.id);
   const resolvedImages = resolveStopImages(stop);
 
@@ -62,7 +53,6 @@ export default async function SafariStopSection({
               embedded
               hideId
             />
-            {insight && <PropertySpotlight insight={insight} />}
           </div>
         </div>
 
