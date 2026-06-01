@@ -1,4 +1,6 @@
 import type { SafariStop } from "@/data/itinerary";
+import { STOP_ASTRO_GUIDES } from "@/data/astroPhotography";
+import AstroPhotoGuide from "@/components/AstroPhotoGuide";
 
 interface NotesSectionProps {
   stop: SafariStop;
@@ -75,6 +77,12 @@ export default function NotesSection({ stop }: NotesSectionProps) {
           </ul>
         </div>
       </div>
+
+      {photographyNotes.astroGuide && STOP_ASTRO_GUIDES[stop.id] && (
+        <div className="border-t border-safari-sand/60 px-4 pb-4 sm:px-6 sm:pb-6">
+          <AstroPhotoGuide guide={STOP_ASTRO_GUIDES[stop.id]} />
+        </div>
+      )}
     </article>
   );
 }

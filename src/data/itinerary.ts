@@ -10,6 +10,8 @@ export interface PhotographyNotes {
   lensSuggestions: string[];
   dustOrMoistureWarning: string;
   tips: string[];
+  /** PhotoPills + D850 night-sky guide for dark-sky camps */
+  astroGuide?: boolean;
 }
 
 export interface SafariStop {
@@ -159,6 +161,7 @@ export const ITINERARY: SafariStop[] = [
         "Bring lens wipes — morning dew on the front element is common",
         "Prioritize clear nights here for Milky Way and star trails — this may be the trip's best astro spot",
       ],
+      astroGuide: true,
     },
   },
   {
@@ -201,7 +204,7 @@ export const ITINERARY: SafariStop[] = [
     },
     photographyNotes: {
       overview:
-        "Loisaba's escarpment views and night skies are standout subjects. Elephant, lion, and leopard are possible.",
+        "Loisaba's escarpment views and night skies are standout subjects. Elephant, lion, and leopard by day; Milky Way over the Northern Frontier by night.",
       lensSuggestions: [
         "200–500mm + 1.4× TC for predators and elephants on the plains below",
         "16–24mm for escarpment panoramas at sunrise",
@@ -214,6 +217,7 @@ export const ITINERARY: SafariStop[] = [
         "Night drive: bump ISO to 6400–12800, accept noise — moments are fleeting",
         "Polarizer useful for midday landscape shots over the valley",
       ],
+      astroGuide: true,
     },
   },
   {
