@@ -27,6 +27,10 @@ export interface SafariStop {
     lon: number;
   };
   description: string;
+  /** Brief history or context — shown on the accommodation card */
+  campHistory?: string;
+  /** Signature wildlife for bush camps — omit if already covered in description */
+  wildlifeKnownFor?: string[];
   websiteUrl: string;
   weatherLocationName: string;
   photoFolder: string;
@@ -59,6 +63,8 @@ export const ITINERARY: SafariStop[] = [
     coordinates: { lat: -1.3324, lon: 36.7117 },
     description:
       "An elegant boutique hotel in Karen — the perfect soft landing after the long flight, with refined comfort before the bush.",
+    campHistory:
+      "Named for Ernest Hemingway, who hunted and wrote in Kenya in the 1930s. The hotel sits in Karen — the Nairobi suburb named for Karen Blixen, whose farm and memoir Out of Africa lie minutes away at the foot of the Ngong Hills.",
     websiteUrl: "https://www.hemingways-collection.com/nairobi/",
     weatherLocationName: "Nairobi",
     photoFolder: "/images/hemingways",
@@ -112,6 +118,12 @@ export const ITINERARY: SafariStop[] = [
     coordinates: { lat: 0.2833, lon: 37.0667 },
     description:
       "A private wilderness camp on the Laikipia Plateau — exclusive game drives, dramatic landscapes, and star-filled nights. Enasoit may end up being the best astrophotography location of the entire trip.",
+    campHistory:
+      "Enasoit means \"rock\" in Maa — a nod to the formations on this 4,500-acre private reserve. A Scandinavian family who came to Kenya for safari ended up making this their home, protecting a natural wildlife corridor between the Lolldaiga Hills and neighboring conservancies.",
+    wildlifeKnownFor: [
+      "Morning and evening gatherings at the camp waterhole — elephant, giraffe, zebra, and antelope",
+      "African wild dog and resident lion prides on the private reserve",
+    ],
     websiteUrl: "https://enasoitcollection.com/",
     weatherLocationName: "Laikipia",
     photoFolder: "/images/enasoit",
@@ -168,6 +180,13 @@ export const ITINERARY: SafariStop[] = [
     coordinates: { lat: 0.6333, lon: 37.2833 },
     description:
       "Ultra-luxury tented camp perched on an escarpment — sweeping views over the Northern Frontier, camel treks, and night drives.",
+    campHistory:
+      "Loisaba is a 58,000-acre working conservancy on a former cattle ranch, protected in perpetuity since 2014 under the Loisaba Community Trust with The Nature Conservancy. Lodo Springs opened in 2019 on the escarpment — a newer camp on land that has become one of Kenya's most important elephant corridors.",
+    wildlifeKnownFor: [
+      "Northern Kenya specials: Grevy's zebra, reticulated giraffe, beisa oryx, gerenuk, and Somali ostrich",
+      "African wild dog and cheetah on the conservancy plains",
+      "Black rhino sanctuary — rhinos restored to this landscape after decades away",
+    ],
     websiteUrl: "https://www.loisaba.com/accommodation/lodo-springs/",
     weatherLocationName: "Loisaba Conservancy",
     photoFolder: "/images/loisaba",
@@ -224,6 +243,13 @@ export const ITINERARY: SafariStop[] = [
     coordinates: { lat: -1.4167, lon: 35.2 },
     description:
       "Intimate camp in the Mara ecosystem — big cats, vast savanna, and some of the finest wildlife viewing in Africa.",
+    campHistory:
+      "Naboisho means \"coming together\" in Maa. In 2010, more than 500 Maasai landowners leased their land into this 50,000-acre community conservancy — reversing overgrazing and fragmentation while keeping livestock on a managed, rotational system.",
+    wildlifeKnownFor: [
+      "Among the highest lion densities in Africa — several established prides",
+      "Large elephant and buffalo herds on the conservancy year-round",
+      "Fewer vehicles than the main Mara reserve — walking safaris and night drives allowed here",
+    ],
     websiteUrl: "https://www.asiliaafrica.com/camps-lodges/naboisho-camp/",
     weatherLocationName: "Maasai Mara",
     photoFolder: "/images/naboisho",

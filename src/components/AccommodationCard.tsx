@@ -58,6 +58,36 @@ export default function AccommodationCard({
           {stop.description}
         </p>
 
+        {stop.campHistory && (
+          <div className="mt-5 rounded-xl border border-safari-sand/60 bg-safari-ivory/60 p-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-safari-green">
+              History
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-safari-charcoal/80">
+              {stop.campHistory}
+            </p>
+          </div>
+        )}
+
+        {stop.wildlifeKnownFor && stop.wildlifeKnownFor.length > 0 && (
+          <div className="mt-4 rounded-xl border border-safari-sand/60 bg-safari-ivory/60 p-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-safari-green">
+              Wildlife to Watch For
+            </p>
+            <ul className="mt-2 space-y-2">
+              {stop.wildlifeKnownFor.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-2 text-sm leading-relaxed text-safari-charcoal/80"
+                >
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-safari-green" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div className="mt-5">
           <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-safari-charcoal/50">
             Gallery Preview
