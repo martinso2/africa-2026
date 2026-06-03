@@ -4,6 +4,8 @@ import dynamic from "next/dynamic";
 import SafariImage from "@/components/SafariImage";
 import {
   EMIRATES_CABIN,
+  EMIRATES_LOCATOR,
+  EMIRATES_ONLINE_CHECKIN_URL,
   formatInternationalDate,
   formatShortDay,
   getJourneyWaypoints,
@@ -186,6 +188,19 @@ export function InternationalJourneySection({
 
         <div className="border-b border-safari-sand/60 bg-safari-green/5 px-4 py-4 sm:px-6">
           <p className="text-sm text-safari-charcoal/60">{totalMiles}</p>
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            <span className="rounded-full bg-safari-ivory px-4 py-2 text-sm font-semibold text-safari-green">
+              Emirates locator: {EMIRATES_LOCATOR}
+            </span>
+            <a
+              href={EMIRATES_ONLINE_CHECKIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-safari-green px-4 py-2 text-sm font-semibold text-safari-ivory transition hover:opacity-90"
+            >
+              Online check-in
+            </a>
+          </div>
           <div className="mt-3 flex flex-wrap gap-2">
             {journey.legs.map((leg) => (
               <FlightDateBadge key={`${journey.id}-${leg.date}-${leg.flightNumber}`}>

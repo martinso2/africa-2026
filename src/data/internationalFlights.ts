@@ -42,6 +42,9 @@ export const INTERNATIONAL_FLIGHT_HERO = "/images/flights/emirates-first.jpg";
 export const INTERNATIONAL_FLIGHT_HERO_ALT =
   "Emirates Business Class cabin on board";
 export const EMIRATES_CABIN = "Business Class";
+export const EMIRATES_LOCATOR = "M2FJD6";
+export const EMIRATES_ONLINE_CHECKIN_URL =
+  "https://www.emirates.com/english/manage-booking/online-check-in/";
 
 const JFK = { lat: 40.6413, lon: -73.7781 };
 const DXB = { lat: 25.2532, lon: 55.3657 };
